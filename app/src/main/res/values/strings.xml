@@ -10,4 +10,9 @@
     <string name="text_ikapurwanti144_gmail_com">ikapurwanti144@gmail.com</string>
     <string name="text_phone_number">Phone Number</string>
     <string name="text_089503250312">089503250312</string>
+    <string name="text_name">Name</string>
+    <string name="text_personal_info">Personal Info</string>
+    <string name="text_contact_info">Contact Info</string>
+    <string name="text_password_data">********</string>
+    <string name="text_logout">Logout</string>
 </resources>
