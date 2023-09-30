@@ -11,7 +11,7 @@
 
     <color name="app_color_primary">#010E16</color>
     <color name="app_color_on_primary">#FFFFFF</color>
-    <color name="app_color_primary_container">#6C6C6C</color>
+    <color name="app_color_primary_container">#646464</color>
     <color name="app_color_on_primary_container">#36404B</color>
 
     <color name="app_color_secondary">#035176</color>
