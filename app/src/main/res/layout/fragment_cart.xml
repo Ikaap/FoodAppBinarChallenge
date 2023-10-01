@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="@color/screenBackground"
+    android:padding="16dp"
     tools:context=".presentation.cart.CartFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,8 +91,11 @@
         <Button
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:text="Checkout"
             android:background="@drawable/bg_button_rounded_primary"
+            android:fontFamily="@font/inter_font"
+            android:text="Checkout"
+            android:textFontWeight="700"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
