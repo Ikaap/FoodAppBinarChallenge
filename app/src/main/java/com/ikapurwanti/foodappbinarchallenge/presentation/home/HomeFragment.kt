@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ikapurwanti.foodappbinarchallenge.R
 import com.ikapurwanti.foodappbinarchallenge.data.CategoriesDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.CategoriesDataSourceImpl
 import com.ikapurwanti.foodappbinarchallenge.data.MenuDataSource
@@ -19,14 +19,14 @@ import com.ikapurwanti.foodappbinarchallenge.presentation.home.adapter.MenuListA
 
 class HomeFragment : Fragment() {
 
-    private lateinit var binding : FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
 
     private val datasourceMenu: MenuDataSource by lazy {
         MenuDataSourceImpl()
     }
 
     private val adapterMenu: MenuListAdapter by lazy {
-        MenuListAdapter(AdapterLayoutMode.LINEAR){
+        MenuListAdapter(AdapterLayoutMode.LINEAR) {
         }
     }
 
@@ -35,6 +35,7 @@ class HomeFragment : Fragment() {
     }
 
     private val adapterCategories = CategoriesListAdapter()
+    private val isGrid = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,27 +62,31 @@ class HomeFragment : Fragment() {
     }
 
     private fun showRecyclerMenu() {
-        val span = if(adapterMenu.adapterLayoutMode == AdapterLayoutMode.LINEAR) 1 else 2
+        val span = if (adapterMenu.adapterLayoutMode == AdapterLayoutMode.LINEAR) 1 else 2
         binding.rvMenuList.apply {
-            layoutManager = GridLayoutManager(requireContext(),span)
-            adapter = this.adapter
+            layoutManager = GridLayoutManager(requireContext(), span)
+            adapter = this@HomeFragment.adapterMenu
         }
         adapterMenu.setData(datasourceMenu.getMenu())
     }
 
     private fun setupSwitch() {
         binding.ivSwitchGrid.setOnClickListener {
-            if (true) {
-                (binding.rvMenuList.layoutManager as GridLayoutManager).spanCount = 2
-                adapterMenu.adapterLayoutMode = AdapterLayoutMode.GRID
-                adapterMenu.refreshList()
-            } else {
-                binding.ivSwitchGrid.setImageResource(R.drawable.ic_list)
-                (binding.rvMenuList.layoutManager as GridLayoutManager).spanCount = 1
-                adapterMenu.adapterLayoutMode = AdapterLayoutMode.LINEAR
-                adapterMenu.refreshList()
-            }
+            binding.ivSwitchGrid.isGone = true
+            binding.ivSwitchList.isGone = false
+            (binding.rvMenuList.layoutManager as GridLayoutManager).spanCount = 2
+            adapterMenu.adapterLayoutMode = AdapterLayoutMode.GRID
+            adapterMenu.refreshList()
         }
+        binding.ivSwitchList.setOnClickListener {
+
+            binding.ivSwitchGrid.isGone = false
+            binding.ivSwitchList.isGone = true
+            (binding.rvMenuList.layoutManager as GridLayoutManager).spanCount = 1
+            adapterMenu.adapterLayoutMode = AdapterLayoutMode.LINEAR
+            adapterMenu.refreshList()
+        }
+
+
     }
 }
-

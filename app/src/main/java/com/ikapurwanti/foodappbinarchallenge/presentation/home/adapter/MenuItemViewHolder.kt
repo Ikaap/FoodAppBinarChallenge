@@ -15,7 +15,7 @@ class LinearMenuItemViewHolder(
         with(binding) {
             ivMenuImage.load(menu.image)
             tvMenuName.text = menu.name
-            tvMenuPrice.text = menu.price.toString()
+            tvMenuPrice.text = "IDR ${menu.price}"
             tvMenuRating.text = menu.rating.toString()
         }
         binding.root.setOnClickListener{
@@ -32,7 +32,7 @@ class GridMenuItemViewHolder(
         with(binding) {
             ivMenuImage.load(menu.image)
             tvMenuName.text = menu.name
-            tvMenuPrice.text = menu.price.toString()
+            tvMenuPrice.text = "IDR ${menu.price}"
             tvMenuRating.text = menu.rating.toString()
         }
         binding.root.setOnClickListener{
