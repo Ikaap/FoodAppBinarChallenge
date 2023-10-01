@@ -23,7 +23,7 @@ class DetailMenuActivity : AppCompatActivity() {
     }
 
     private fun backToHome() {
-        binding.cvBtnBackToHome.setOnClickListener {
+        binding.ivBackHome.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
