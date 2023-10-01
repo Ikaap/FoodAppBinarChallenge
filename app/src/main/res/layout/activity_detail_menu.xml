@@ -211,7 +211,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/bg_button_rounded_secondary"
+            android:background="@drawable/bg_button_rounded_primary"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
