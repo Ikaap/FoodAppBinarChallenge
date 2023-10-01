@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     android:background="@color/screenBackground"
     tools:context=".presentation.cart.CartFragment">
 
@@ -11,8 +12,6 @@
         android:id="@+id/cl_header_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -54,7 +53,6 @@
         android:id="@+id/rv_cart_list"
         android:layout_width="match_parent"
         android:layout_height="550dp"
-        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,14 +61,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginHorizontal="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/tv_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/inter_font"
             android:text="@string/text_total_price"
@@ -83,7 +79,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/inter_font"
             android:textColor="@color/app_color_primary"
@@ -96,7 +91,6 @@
         <Button
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
             android:text="Checkout"
             android:background="@drawable/bg_button_rounded_primary"
             app:layout_constraintBottom_toBottomOf="parent"
