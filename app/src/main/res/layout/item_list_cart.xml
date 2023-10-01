@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="230dp">
 
     <ImageView
         android:id="@+id/iv_menu_image"
-        android:layout_width="130dp"
-        android:layout_height="150dp"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,29 +42,21 @@
         app:layout_constraintTop_toBottomOf="@id/tv_menu_name"
         tools:text="IDR 28.000" />
 
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:src="@drawable/ic_more_action"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@id/iv_menu_image"
         app:layout_constraintTop_toBottomOf="@id/tv_menu_price">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
             android:fontFamily="@font/inter_font"
             android:text="@string/text_notes"
             android:textColor="@color/app_color_primary"
@@ -72,13 +64,71 @@
             android:textSize="16sp" />
 
         <EditText
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="180dp"
+            android:layout_height="100dp"
+            android:background="null"
             android:fontFamily="@font/inter_font"
-            android:textColor="@color/app_color_primary"
+            android:gravity="top"
+            android:text="porsinya yang banyak ka hihih"
+            android:textColor="@color/subText"
             android:textFontWeight="400"
             android:textSize="16sp" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_action_calculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/iv_delete">
+
+        <TextView
+            android:id="@+id/tv_min_order"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/bg_button_primary_transparent"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_calculate_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:text="@string/text_0"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/tv_plus_order"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/bg_button_primary_transparent"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
