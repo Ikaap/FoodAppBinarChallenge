@@ -12,8 +12,6 @@
   
     <string name="text_cart">Cart</string>
     <string name="text_notes">Notes :</string>
-    <string name="text_0">0</string>
-    <string name="text_total_price">Total Price</string>
 
     <string name="text_profile">Profile</string>
     <string name="text_username">Username</string>
@@ -37,5 +35,8 @@
     <string name="text_categories">Categories</string>
     <string name="text_show_all">Show all</string>
     <string name="text_food_menu_list">Food Menu List</string>
+    <string name="text_title_bottom_nav_home">Home</string>
+    <string name="text_title_bottom_nav_cart">Cart</string>
+    <string name="text_title_bottom_nav_profile">Profile</string>
 
 </resources>

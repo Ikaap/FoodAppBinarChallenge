@@ -13,6 +13,8 @@ import com.ikapurwanti.foodappbinarchallenge.data.CategoriesDataSourceImpl
 import com.ikapurwanti.foodappbinarchallenge.data.MenuDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.MenuDataSourceImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.FragmentHomeBinding
+import com.ikapurwanti.foodappbinarchallenge.model.Menu
+import com.ikapurwanti.foodappbinarchallenge.presentation.detailmenu.DetailMenuActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.home.adapter.AdapterLayoutMode
 import com.ikapurwanti.foodappbinarchallenge.presentation.home.adapter.CategoriesListAdapter
 import com.ikapurwanti.foodappbinarchallenge.presentation.home.adapter.MenuListAdapter
@@ -27,6 +29,7 @@ class HomeFragment : Fragment() {
 
     private val adapterMenu: MenuListAdapter by lazy {
         MenuListAdapter(AdapterLayoutMode.LINEAR) {
+            navigateToDetailMenu(it)
         }
     }
 
@@ -35,7 +38,10 @@ class HomeFragment : Fragment() {
     }
 
     private val adapterCategories = CategoriesListAdapter()
-    private val isGrid = false
+
+    private fun navigateToDetailMenu(menu: Menu) {
+        DetailMenuActivity.startActivity(requireContext(), menu)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
