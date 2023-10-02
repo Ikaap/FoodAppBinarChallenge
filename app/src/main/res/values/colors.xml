@@ -8,6 +8,9 @@
     <color name="subText">#B3B3B3</color>
     <color name="textBanner">#9B9B9B</color>
     <color name="linkText">#459FCA</color>
+    <color name="containerProfile">#F1F1F1</color>
+    <color name="backgroundRating">#959892</color>
+
 
     <color name="app_color_primary">#010E16</color>
     <color name="app_color_on_primary">#FFFFFF</color>
