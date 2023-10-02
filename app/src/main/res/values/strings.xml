@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">FoodAppBinarChallenge</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="text_location">Location</string>
+    <string name="text_address">Jl. BSD Green Office Park Jl. BSD Grand\nBoulevard, Sampora, BSD, Kabupaten Tangerang, Banten 15345</string>
+    <string name="text_0">0</string>
+    <string name="text_total_price">Total Price</string>
+    <string name="text_add_to_cart">Add to Cart -</string>
+  
     <string name="text_cart">Cart</string>
     <string name="text_notes">Notes :</string>
     <string name="text_0">0</string>
