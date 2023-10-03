@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">FoodAppBinarChallenge</string>
+    <string name="text_order_confirmation">Order Confirmation</string>
+    <string name="text_shipping_method">Shipping Method</string>
+    <string name="text_delivery">Delivery</string>
+    <string name="text_pick_up">Pick Up</string>
+    <string name="text_payment_method">Payment Method</string>
+    <string name="text_cash">Cash</string>
+    <string name="text_e_wallet">E-Wallet</string>
+    <string name="text_payment_summary">Payment Summary</string>
+    <string name="text_total_payment">Total Payment</string>
+    <string name="text_order">Order</string>
 </resources>
