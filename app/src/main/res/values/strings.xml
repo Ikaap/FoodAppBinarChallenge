@@ -10,4 +10,6 @@
     <string name="text_payment_summary">Payment Summary</string>
     <string name="text_total_payment">Total Payment</string>
     <string name="text_order">Order</string>
+    <string name="text_notes">Notes</string>
+    <string name="text_0">0</string>
 </resources>
