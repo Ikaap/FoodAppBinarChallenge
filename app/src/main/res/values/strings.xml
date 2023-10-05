@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">FoodAppBinarChallenge</string>
 
+    <string name="text_order_confirmation">Order Confirmation</string>
+    <string name="text_shipping_method">Shipping Method</string>
+    <string name="text_delivery">Delivery</string>
+    <string name="text_pick_up">Pick Up</string>
+    <string name="text_payment_method">Payment Method</string>
+    <string name="text_cash">Cash</string>
+    <string name="text_e_wallet">E-Wallet</string>
+    <string name="text_payment_summary">Payment Summary</string>
+    <string name="text_total_payment">Total Payment</string>
+    <string name="text_order">Order</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -33,7 +44,6 @@
     <string name="text_banner_discount">up to 50%</string>
     <string name="text_claim_voucher">Claim Voucher</string>
     <string name="text_categories">Categories</string>
-    <string name="text_show_all">Show all</string>
     <string name="text_food_menu_list">Food Menu List</string>
     <string name="text_title_bottom_nav_home">Home</string>
     <string name="text_title_bottom_nav_cart">Cart</string>
