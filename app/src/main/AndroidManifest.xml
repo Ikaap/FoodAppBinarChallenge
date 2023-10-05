@@ -14,6 +14,9 @@
         tools:targetApi="31">
         <activity
             android:name=".presentation.checkout.CheckoutActivity"
+
+            android:name=".presentation.detailmenu.DetailMenuActivity"
+
             android:exported="false" />
         <activity
             android:name=".presentation.main.MainActivity"
