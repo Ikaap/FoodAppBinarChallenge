@@ -17,8 +17,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="34dp"
-            android:layout_height="34dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:alpha="0.7"
             android:background="@drawable/bg_button_elips_primary_container"
             android:padding="10dp"
@@ -34,14 +34,14 @@
             android:text="@string/text_profile"
             android:textColor="@color/app_color_primary"
             android:textFontWeight="700"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="34dp"
-            android:layout_height="34dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:alpha="0.7"
             android:background="@drawable/bg_button_elips_primary_container"
             android:padding="8dp"
@@ -64,15 +64,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vw_line">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_profile_pict"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             app:cardCornerRadius="180dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +95,7 @@
             android:text="@string/text_personal_info"
             android:textColor="@color/app_color_primary"
             android:textFontWeight="700"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cv_profile_pict" />
 
@@ -193,7 +193,7 @@
             android:text="@string/text_contact_info"
             android:textColor="@color/app_color_primary"
             android:textFontWeight="700"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_data_personal" />
 
@@ -261,7 +261,7 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginHorizontal="8dp"
         android:background="@drawable/bg_button_rounded_primary"
         android:fontFamily="@font/inter_font"

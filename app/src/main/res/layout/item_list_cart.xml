@@ -67,8 +67,8 @@
         <EditText
             android:id="@+id/et_note_menu"
             android:layout_width="180dp"
-            android:layout_height="80dp"
-            android:background="null"
+            android:layout_height="100dp"
+            android:background="@null"
             android:fontFamily="@font/inter_font"
             android:gravity="top"
             android:text="porsinya yang banyak ka hihih"

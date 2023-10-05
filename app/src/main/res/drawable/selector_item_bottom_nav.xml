@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- State ketika item terpilih -->
+    <item android:color="@color/app_color_primary" android:state_checked="true" />
+    <!-- State default (item tidak terpilih) -->
+    <item android:color="@color/iconNav" />
+</selector>

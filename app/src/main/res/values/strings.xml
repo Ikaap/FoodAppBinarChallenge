@@ -45,5 +45,8 @@
     <string name="text_claim_voucher">Claim Voucher</string>
     <string name="text_categories">Categories</string>
     <string name="text_food_menu_list">Food Menu List</string>
+    <string name="text_title_bottom_nav_home">Home</string>
+    <string name="text_title_bottom_nav_cart">Cart</string>
+    <string name="text_title_bottom_nav_profile">Profile</string>
 
 </resources>
