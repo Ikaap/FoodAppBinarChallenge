@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?><?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:layout_marginBottom="16dp">
+
+    <ImageView
+        android:id="@+id/iv_menu_image"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_menu_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inter_font"
+        android:textColor="@color/app_color_primary"
+        android:textFontWeight="700"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/iv_menu_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Sate Ayam" />
+
+    <TextView
+        android:id="@+id/tv_total_calculate_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/inter_font"
+        android:textColor="@color/app_color_primary"
+        android:textFontWeight="500"
+        android:layout_marginTop="40dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        tools:text="x1" />
+
+    <TextView
+        android:id="@+id/tv_menu_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/inter_font"
+        android:textColor="@color/app_color_primary"
+        android:textFontWeight="500"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/iv_menu_image"
+        app:layout_constraintTop_toBottomOf="@id/tv_menu_name"
+        tools:text="IDR 28.000" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_menu_image"
+        app:layout_constraintTop_toBottomOf="@id/tv_menu_price">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/inter_font"
+            android:text="@string/text_notes"
+            android:textColor="@color/app_color_primary"
+            android:textFontWeight="400"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_note_menu"
+            android:layout_width="180dp"
+            android:layout_height="80dp"
+            android:background="null"
+            android:fontFamily="@font/inter_font"
+            android:gravity="top"
+            android:text="porsinya yang banyak ka hihih"
+            android:textColor="@color/subText"
+            android:textFontWeight="400"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_delete"-->
+<!--        android:layout_width="24dp"-->
+<!--        android:layout_height="24dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:src="@drawable/ic_delete"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/ll_action_calculate"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="24dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/iv_delete">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_min_order"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:background="@drawable/bg_button_primary_transparent"-->
+<!--            android:gravity="center"-->
+<!--            android:text="-"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_calculate_order"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="18dp"-->
+<!--            android:text="@string/text_0"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            tools:text="1" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_plus_order"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:background="@drawable/bg_button_primary_transparent"-->
+<!--            android:gravity="center"-->
+<!--            android:text="+"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textStyle="bold" />-->
+
+<!--    </LinearLayout>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
