@@ -48,6 +48,8 @@
     <string name="text_title_bottom_nav_home">Home</string>
     <string name="text_title_bottom_nav_cart">Cart</string>
     <string name="text_title_bottom_nav_profile">Profile</string>
+    <string name="text_back_to_home">Back to Home</string>
+    <string name="text_order_successful">order successful</string>
 
     <string name="total_qty">x%s</string>
     <string name="text_menu_list_empty">Menu List Data is Empty</string>
