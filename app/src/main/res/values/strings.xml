@@ -48,5 +48,7 @@
     <string name="text_title_bottom_nav_home">Home</string>
     <string name="text_title_bottom_nav_cart">Cart</string>
     <string name="text_title_bottom_nav_profile">Profile</string>
+    <string name="text_back_to_home">Back to Home</string>
+    <string name="text_order_successful">order successful</string>
 
 </resources>
