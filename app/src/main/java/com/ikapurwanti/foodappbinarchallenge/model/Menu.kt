@@ -5,9 +5,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Menu(
-    var image : Int = 0,
-    var name : String = "",
-    var price : Double = 0.0,
-    var rating : Double = 0.0,
-    var desc : String =""
+    var id: Int? = null,
+    val menuImg: Int = 0,
+    val name: String = "",
+    val price: Double = 0.0,
+    val rating: Double = 0.0,
+    val desc: String = ""
 ) : Parcelable

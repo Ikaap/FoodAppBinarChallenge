@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.ikapurwanti.foodappbinarchallenge.presentation.home.HomeFragment"
+        android:name="com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="com.ikapurwanti.foodappbinarchallenge.presentation.cart.CartFragment"
+        android:name="com.ikapurwanti.foodappbinarchallenge.presentation.feature.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.ikapurwanti.foodappbinarchallenge.presentation.profile.ProfileFragment"
+        android:name="com.ikapurwanti.foodappbinarchallenge.presentation.feature.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
