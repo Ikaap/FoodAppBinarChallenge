@@ -71,7 +71,7 @@ class CartFragment : Fragment() {
 
     private fun setClickListener() {
         binding.btnCheckout.setOnClickListener {
-            context?.startActivity(Intent(requireContext(), CheckoutActivity::class.java))
+            startActivity(Intent(requireContext(), CheckoutActivity::class.java))
         }
     }
 

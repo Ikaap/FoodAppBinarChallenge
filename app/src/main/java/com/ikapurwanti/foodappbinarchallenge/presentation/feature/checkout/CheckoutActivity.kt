@@ -1,7 +1,10 @@
 package com.ikapurwanti.foodappbinarchallenge.presentation.feature.checkout
 
+import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +14,9 @@ import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.Cart
 import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityCheckoutBinding
+import com.ikapurwanti.foodappbinarchallenge.databinding.LayoutDialogCheckoutSuccessBinding
 import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartListAdapter
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.HomeFragment
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
 
@@ -45,6 +50,24 @@ class CheckoutActivity : AppCompatActivity() {
         binding.ivBack.setOnClickListener {
             onBackPressed()
         }
+        binding.clActionOrder.setOnClickListener{
+            showSuccessDialog()
+        }
+    }
+
+    private fun showSuccessDialog() {
+        val dialogBinding = LayoutDialogCheckoutSuccessBinding.inflate(layoutInflater)
+
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(dialogBinding.root)
+
+        dialogBinding.tvBackToHome.setOnClickListener {
+            startActivity(Intent(this, HomeFragment::class.java))
+        }
+        dialog.show()
+
     }
 
     private fun observeData() {
