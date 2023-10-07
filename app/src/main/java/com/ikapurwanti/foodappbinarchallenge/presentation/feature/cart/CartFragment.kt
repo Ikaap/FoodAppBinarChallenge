@@ -69,6 +69,7 @@ class CartFragment : Fragment() {
         setClickListener()
     }
 
+
     private fun setClickListener() {
         binding.btnCheckout.setOnClickListener {
             startActivity(Intent(requireContext(), CheckoutActivity::class.java))
@@ -79,6 +80,7 @@ class CartFragment : Fragment() {
         viewModel.cartList.observe(viewLifecycleOwner) { result ->
             result.proceedWhen(
                 doOnSuccess = {
+                    binding.btnCheckout.isEnabled = true
                     binding.rvCartList.isVisible = true
                     binding.layoutState.root.isVisible = false
                     binding.layoutState.pbLoading.isVisible = false

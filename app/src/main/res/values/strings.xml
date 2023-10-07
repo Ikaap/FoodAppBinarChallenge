@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FoodAppBinarChallenge</string>
+    <string name="app_name" translatable="false">FoodAppBinarChallenge</string>
 
     <string name="text_order_confirmation">Order Confirmation</string>
     <string name="text_shipping_method">Shipping Method</string>
@@ -13,11 +13,11 @@
     <string name="text_order">Order</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
     <string name="text_location">Location</string>
-    <string name="text_address">Jl. BSD Green Office Park Jl. BSD Grand\nBoulevard, Sampora, BSD, Kabupaten Tangerang, Banten 15345</string>
-    <string name="text_0">0</string>
+    <string name="text_address" translatable="false">Jl. BSD Green Office Park Jl. BSD Grand\nBoulevard, Sampora, BSD, Kabupaten Tangerang, Banten 15345</string>
+    <string name="text_0" translatable="false">0</string>
     <string name="text_total_price">Total Price</string>
     <string name="text_add_to_cart">Add to Cart -</string>
   
@@ -25,17 +25,17 @@
     <string name="text_notes">Notes</string>
 
     <string name="text_profile">Profile</string>
-    <string name="text_username">Username</string>
-    <string name="text_iikaap2">iikaap2</string>
-    <string name="text_password">Password</string>
-    <string name="text_email">Email</string>
-    <string name="text_ikapurwanti144_gmail_com">ikapurwanti144@gmail.com</string>
+    <string name="text_username" translatable="false">Username</string>
+    <string name="text_iikaap2" translatable="false">iikaap2</string>
+    <string name="text_password" translatable="false">Password</string>
+    <string name="text_email" translatable="false">Email</string>
+    <string name="text_ikapurwanti144_gmail_com" translatable="false">ikapurwanti144@gmail.com</string>
     <string name="text_phone_number">Phone Number</string>
-    <string name="text_089503250312">089503250312</string>
+    <string name="text_089503250312" translatable="false">089503250312</string>
     <string name="text_name">Name</string>
     <string name="text_personal_info">Personal Info</string>
     <string name="text_contact_info">Contact Info</string>
-    <string name="text_password_data">********</string>
+    <string name="text_password_data" translatable="false">********</string>
     <string name="text_logout">Logout</string>
 
     <string name="text_header_hello">Hi Binarian!</string>
@@ -45,13 +45,13 @@
     <string name="text_claim_voucher">Claim Voucher</string>
     <string name="text_categories">Categories</string>
     <string name="text_food_menu_list">Food Menu List</string>
-    <string name="text_title_bottom_nav_home">Home</string>
+    <string name="text_title_bottom_nav_home" translatable="false">Home</string>
     <string name="text_title_bottom_nav_cart">Cart</string>
     <string name="text_title_bottom_nav_profile">Profile</string>
     <string name="text_back_to_home">Back to Home</string>
     <string name="text_order_successful">order successful</string>
 
-    <string name="total_qty">x%s</string>
+    <string name="total_qty" translatable="false">x%s</string>
     <string name="text_menu_list_empty">Menu List Data is Empty</string>
     <string name="text_cart_list_empty">Cart List Data is Empty</string>
 </resources>

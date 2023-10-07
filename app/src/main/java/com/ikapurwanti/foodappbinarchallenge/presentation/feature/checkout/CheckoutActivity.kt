@@ -1,7 +1,10 @@
 package com.ikapurwanti.foodappbinarchallenge.presentation.feature.checkout
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
@@ -17,6 +20,7 @@ import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityCheckoutBinding
 import com.ikapurwanti.foodappbinarchallenge.databinding.LayoutDialogCheckoutSuccessBinding
 import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartListAdapter
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.HomeFragment
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.main.MainActivity
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
 
@@ -50,28 +54,29 @@ class CheckoutActivity : AppCompatActivity() {
         binding.ivBack.setOnClickListener {
             onBackPressed()
         }
-        binding.clActionOrder.setOnClickListener{
+        binding.clActionOrder.setOnClickListener {
             showSuccessDialog()
         }
     }
 
     private fun showSuccessDialog() {
-        val dialogBinding = LayoutDialogCheckoutSuccessBinding.inflate(layoutInflater)
+        val binding: LayoutDialogCheckoutSuccessBinding =
+            LayoutDialogCheckoutSuccessBinding.inflate(layoutInflater)
+        val dialogView = binding.root
 
-        val dialog = Dialog(this)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setContentView(dialogBinding.root)
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialogView)
+        val dialog = builder.create()
 
-        dialogBinding.tvBackToHome.setOnClickListener {
-            startActivity(Intent(this, HomeFragment::class.java))
+        binding.tvBackToHome.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+
         }
         dialog.show()
-
     }
 
     private fun observeData() {
-        viewModel.cartListOrder.observe(this){ it ->
+        viewModel.cartListOrder.observe(this) { it ->
             it.proceedWhen(
                 doOnSuccess = {
                     binding.rvOrderList.isVisible = true
