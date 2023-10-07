@@ -106,6 +106,7 @@ class CartFragment : Fragment() {
                     binding.rvCartList.isVisible = false
                 },
                 doOnEmpty = {
+                    binding.btnCheckout.isEnabled = false
                     binding.layoutState.root.isVisible = true
                     binding.layoutState.tvError.isVisible = true
                     binding.layoutState.tvError.text = getString(R.string.text_cart_list_empty)

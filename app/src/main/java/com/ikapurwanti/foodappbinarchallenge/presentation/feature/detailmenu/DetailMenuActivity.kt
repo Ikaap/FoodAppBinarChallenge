@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import coil.load
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.AppDatabase
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.CartDataSource
@@ -27,8 +28,8 @@ class DetailMenuActivity : AppCompatActivity() {
     private val viewModel: DetailMenuViewModel by viewModels {
         val database = AppDatabase.getInstance(this)
         val cartDao = database.cartDao()
-        val cartDataSource : CartDataSource = CartDatabaseDataSource(cartDao)
-        val repo : CartRepository = CartRepositoryImpl(cartDataSource)
+        val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource)
         GenericViewModelFactory.create(DetailMenuViewModel(intent?.extras, repo))
     }
 
@@ -66,7 +67,7 @@ class DetailMenuActivity : AppCompatActivity() {
         viewModel.menuCountLiveData.observe(this) {
             binding.tvCalculateOrder.text = it.toString()
         }
-        viewModel.addToCartResult.observe(this){
+        viewModel.addToCartResult.observe(this) {
             it.proceedWhen(
                 doOnSuccess = {
                     Toast.makeText(this, "Add to cart success !", Toast.LENGTH_SHORT).show()
