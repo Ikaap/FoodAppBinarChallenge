@@ -5,6 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatCallback
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatImageButton.FOCUSABLES_TOUCH_MODE
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -13,10 +20,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ikapurwanti.foodappbinarchallenge.R
 import com.ikapurwanti.foodappbinarchallenge.data.dummy.DummyCategoriesDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.dummy.DummyCategoriesDataSourceImpl
-import com.ikapurwanti.foodappbinarchallenge.data.dummy.DummyMenuDataSource
-import com.ikapurwanti.foodappbinarchallenge.data.dummy.DummyMenuDataSourceImpl
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.AppDatabase
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.MenuDatabaseDataSource
+import com.ikapurwanti.foodappbinarchallenge.data.local.datastore.AppPreferenceDataSourceImpl
+import com.ikapurwanti.foodappbinarchallenge.data.local.datastore.appDataStore
 import com.ikapurwanti.foodappbinarchallenge.data.repository.MenuRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.MenuRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.FragmentHomeBinding
@@ -26,7 +33,7 @@ import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.adapter.A
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.adapter.CategoriesListAdapter
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.adapter.MenuListAdapter
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
-import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
+import com.ikapurwanti.foodappbinarchallenge.utils.PreferenceDataStoreHelperImpl
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
 
 class HomeFragment : Fragment() {
@@ -51,13 +58,16 @@ class HomeFragment : Fragment() {
         val menuDao = database.menuDao()
         val menuDataSource = MenuDatabaseDataSource(menuDao)
         val repo: MenuRepository = MenuRepositoryImpl(menuDataSource)
-        GenericViewModelFactory.create(HomeViewModel(repo))
+        val dataStore = this.requireContext().appDataStore
+        val dataStoreHelper = PreferenceDataStoreHelperImpl(dataStore)
+        val appPreferenceDataSource = AppPreferenceDataSourceImpl(dataStoreHelper)
+        GenericViewModelFactory.create(HomeViewModel(repo, appPreferenceDataSource))
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -67,8 +77,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         rvListCategories()
+        rvListMenu()
         observeListMenu()
-        setupSwitch()
+        observeLayout()
+        setupSwitchLayout()
     }
 
     private fun rvListCategories() {
@@ -77,6 +89,16 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         adapterCategories.setData(datasourceCategories.getCategories())
     }
+
+    private fun rvListMenu() {
+        val span = if (adapterMenu.adapterLayoutMode == AdapterLayoutMode.LINEAR) 1 else 2
+        binding.rvMenuList.apply {
+            layoutManager = GridLayoutManager(requireContext(), span)
+            adapter = adapterMenu
+            adapterMenu.refreshList()
+        }
+    }
+
 
     private fun observeListMenu() {
         viewModel.menuList.observe(viewLifecycleOwner) { result ->
@@ -119,21 +141,26 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupSwitch() {
-        binding.ivSwitchGrid.setOnClickListener {
-            binding.ivSwitchGrid.isGone = true
-            binding.ivSwitchList.isGone = false
-            (binding.rvMenuList.layoutManager as GridLayoutManager).spanCount = 2
-            adapterMenu.adapterLayoutMode = AdapterLayoutMode.GRID
+    private fun observeLayout() {
+        viewModel.appLayoutGridLiveData.observe(viewLifecycleOwner) { isGridLayout ->
+            binding.ivSwitchGrid.isGone = isGridLayout
+            binding.ivSwitchList.isGone = !isGridLayout
+            (binding.rvMenuList.layoutManager as GridLayoutManager).spanCount =
+                if (isGridLayout) 2 else 1
+            adapterMenu.adapterLayoutMode =
+                if (isGridLayout) AdapterLayoutMode.GRID else AdapterLayoutMode.LINEAR
             adapterMenu.refreshList()
-        }
-        binding.ivSwitchList.setOnClickListener {
 
-            binding.ivSwitchGrid.isGone = false
-            binding.ivSwitchList.isGone = true
-            (binding.rvMenuList.layoutManager as GridLayoutManager).spanCount = 1
-            adapterMenu.adapterLayoutMode = AdapterLayoutMode.LINEAR
-            adapterMenu.refreshList()
         }
     }
+
+    private fun setupSwitchLayout() {
+        binding.ivSwitchGrid.setOnClickListener {
+            viewModel.setAppLayoutPref(isGridLayout = true)
+        }
+        binding.ivSwitchList.setOnClickListener {
+            viewModel.setAppLayoutPref(isGridLayout = false)
+        }
+    }
+
 }
