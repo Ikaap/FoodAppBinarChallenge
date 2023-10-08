@@ -1,14 +1,11 @@
 package com.ikapurwanti.foodappbinarchallenge.presentation.feature.detailmenu
 
-import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepository
-import com.ikapurwanti.foodappbinarchallenge.model.Cart
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
 import kotlinx.coroutines.launch

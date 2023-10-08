@@ -14,6 +14,7 @@ interface CartDataSource {
     suspend fun insertCarts(cart: List<CartEntity>)
     suspend fun deleteCart(cart: CartEntity): Int
     suspend fun updateCart(cart: CartEntity): Int
+    suspend fun deleteAllCartItems()
 }
 
 class CartDatabaseDataSource(
@@ -41,6 +42,10 @@ class CartDatabaseDataSource(
 
     override suspend fun updateCart(cart: CartEntity): Int {
         return cartDao.updateCart(cart)
+    }
+
+    override suspend fun deleteAllCartItems() {
+        return cartDao.deleteAllCartItems()
     }
 
 }

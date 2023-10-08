@@ -1,7 +1,6 @@
 package com.ikapurwanti.foodappbinarchallenge.data.repository
 
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.CartDataSource
-import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.CartDatabaseDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.entity.CartEntity
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.mapper.toCartEntity
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.mapper.toCartMenuList
@@ -25,6 +24,7 @@ interface CartRepository {
     suspend fun increaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun setCartNotes(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>>
+    suspend fun deleteAllCart()
 }
 
 class CartRepositoryImpl(
@@ -89,6 +89,10 @@ class CartRepositoryImpl(
 
     override suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>> {
         return proceedFlow { cartDataSource.deleteCart(item.toCartEntity()) > 0 }
+    }
+
+    override suspend fun deleteAllCart() {
+      return cartDataSource.deleteAllCartItems()
     }
 
 }

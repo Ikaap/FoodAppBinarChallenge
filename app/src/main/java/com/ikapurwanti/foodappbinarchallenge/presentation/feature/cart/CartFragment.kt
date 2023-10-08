@@ -69,13 +69,6 @@ class CartFragment : Fragment() {
         setClickListener()
     }
 
-
-    private fun setClickListener() {
-        binding.btnCheckout.setOnClickListener {
-            startActivity(Intent(requireContext(), CheckoutActivity::class.java))
-        }
-    }
-
     private fun observeData() {
         viewModel.cartList.observe(viewLifecycleOwner) { result ->
             result.proceedWhen(
@@ -122,5 +115,10 @@ class CartFragment : Fragment() {
         }
     }
 
+    private fun setClickListener() {
+        binding.btnCheckout.setOnClickListener {
+            startActivity(Intent(requireContext(), CheckoutActivity::class.java))
+        }
+    }
 
 }

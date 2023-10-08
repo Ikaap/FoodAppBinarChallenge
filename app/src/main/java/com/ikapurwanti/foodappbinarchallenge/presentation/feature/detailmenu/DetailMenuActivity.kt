@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
 import coil.load
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.AppDatabase
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.CartDataSource
@@ -42,21 +41,13 @@ class DetailMenuActivity : AppCompatActivity() {
         setClickListener()
     }
 
-    private fun setClickListener() {
-        binding.ivBackHome.setOnClickListener {
-            onBackPressed()
-        }
-        binding.clLocation.setOnClickListener {
-            showLocation()
-        }
-        binding.tvMinOrder.setOnClickListener {
-            viewModel.minusOrder()
-        }
-        binding.tvPlusOrder.setOnClickListener {
-            viewModel.plusOrder()
-        }
-        binding.llAddToCart.setOnClickListener {
-            viewModel.addToCart()
+
+    private fun showDetailMenu(menu: Menu?) {
+        menu?.let { menu ->
+            binding.menuImage.load(menu.menuImg)
+            binding.tvMenuName.text = menu.name
+            binding.tvMenuPrice.text = "IDR ${menu.price}"
+            binding.tvMenuDesc.text = menu.desc
         }
     }
 
@@ -79,12 +70,21 @@ class DetailMenuActivity : AppCompatActivity() {
         }
     }
 
-    private fun showDetailMenu(menu: Menu?) {
-        menu?.let { menu ->
-            binding.menuImage.load(menu.menuImg)
-            binding.tvMenuName.text = menu.name
-            binding.tvMenuPrice.text = "IDR ${menu.price}"
-            binding.tvMenuDesc.text = menu.desc
+    private fun setClickListener() {
+        binding.ivBackHome.setOnClickListener {
+            onBackPressed()
+        }
+        binding.clLocation.setOnClickListener {
+            showLocation()
+        }
+        binding.tvMinOrder.setOnClickListener {
+            viewModel.minusOrder()
+        }
+        binding.tvPlusOrder.setOnClickListener {
+            viewModel.plusOrder()
+        }
+        binding.llAddToCart.setOnClickListener {
+            viewModel.addToCart()
         }
     }
 

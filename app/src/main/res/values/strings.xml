@@ -54,6 +54,4 @@
     <string name="total_qty" translatable="false">x%s</string>
     <string name="text_menu_list_empty">Menu List Data is Empty</string>
     <string name="text_cart_list_empty">Cart List Data is Empty</string>
-    <string name="text_back_to_home">Back to Home</string>
-    <string name="text_order_successful">Order Successfull</string>
 </resources>

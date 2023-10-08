@@ -5,13 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatCallback
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.appcompat.widget.AppCompatImageButton.FOCUSABLES_TOUCH_MODE
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -98,7 +91,6 @@ class HomeFragment : Fragment() {
             adapterMenu.refreshList()
         }
     }
-
 
     private fun observeListMenu() {
         viewModel.menuList.observe(viewLifecycleOwner) { result ->

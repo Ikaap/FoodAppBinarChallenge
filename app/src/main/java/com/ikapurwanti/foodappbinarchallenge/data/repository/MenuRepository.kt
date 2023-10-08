@@ -1,9 +1,7 @@
 package com.ikapurwanti.foodappbinarchallenge.data.repository
 
-import com.ikapurwanti.foodappbinarchallenge.data.dummy.DummyCategoriesDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.MenuDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.mapper.toMenuList
-import com.ikapurwanti.foodappbinarchallenge.model.Categories
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
 import com.ikapurwanti.foodappbinarchallenge.utils.proceed

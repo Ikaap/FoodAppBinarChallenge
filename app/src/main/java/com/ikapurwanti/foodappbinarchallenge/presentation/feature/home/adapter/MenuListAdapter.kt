@@ -10,7 +10,6 @@ import com.ikapurwanti.foodappbinarchallenge.core.ViewHolderBinder
 import com.ikapurwanti.foodappbinarchallenge.databinding.ItemGridMenuBinding
 import com.ikapurwanti.foodappbinarchallenge.databinding.ItemLinearMenuBinding
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
-import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
 
 class MenuListAdapter(
     var adapterLayoutMode: AdapterLayoutMode,

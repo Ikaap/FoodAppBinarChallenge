@@ -1,13 +1,9 @@
 package com.ikapurwanti.foodappbinarchallenge.presentation.feature.checkout
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Window
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +15,6 @@ import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityCheckoutBinding
 import com.ikapurwanti.foodappbinarchallenge.databinding.LayoutDialogCheckoutSuccessBinding
 import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartListAdapter
-import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.HomeFragment
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.main.MainActivity
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
@@ -48,31 +43,6 @@ class CheckoutActivity : AppCompatActivity() {
 
         observeData()
         setClickListener()
-    }
-
-    private fun setClickListener() {
-        binding.ivBack.setOnClickListener {
-            onBackPressed()
-        }
-        binding.clActionOrder.setOnClickListener {
-            showSuccessDialog()
-        }
-    }
-
-    private fun showSuccessDialog() {
-        val binding: LayoutDialogCheckoutSuccessBinding =
-            LayoutDialogCheckoutSuccessBinding.inflate(layoutInflater)
-        val dialogView = binding.root
-
-        val builder = AlertDialog.Builder(this)
-        builder.setView(dialogView)
-        val dialog = builder.create()
-
-        binding.tvBackToHome.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-
-        }
-        dialog.show()
     }
 
     private fun observeData() {
@@ -119,4 +89,30 @@ class CheckoutActivity : AppCompatActivity() {
             )
         }
     }
+
+    private fun setClickListener() {
+        binding.ivBack.setOnClickListener {
+            onBackPressed()
+        }
+        binding.tvOrder.setOnClickListener {
+            showSuccessDialog()
+        }
+    }
+
+    private fun showSuccessDialog() {
+        val binding: LayoutDialogCheckoutSuccessBinding =
+            LayoutDialogCheckoutSuccessBinding.inflate(layoutInflater)
+        val dialogView = binding.root
+
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialogView)
+        val dialog = builder.create()
+
+        binding.tvBackToHome.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            viewModel.deleteAllCart()
+        }
+        dialog.show()
+    }
+
 }
