@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_order_confirmation">Konfirmasi Pesanan</string>
+    <string name="text_shipping_method">Metode Pengiriman</string>
+    <string name="text_delivery">Dikirim</string>
+    <string name="text_pick_up">Ambil Sendiri</string>
+    <string name="text_payment_method">Metode Pembayaran</string>
+    <string name="text_cash">Tunai</string>
+    <string name="text_e_wallet">Dompet Digital</string>
+    <string name="text_payment_summary">Ringkasan Pembayaran</string>
+    <string name="text_total_payment">Total Pembayaran</string>
+    <string name="text_order">Pesan</string>
+    <string name="text_location">Lokasi</string>
+    <string name="text_total_price">Total Harga</string>
+    <string name="text_add_to_cart">Tambahkan ke Keranjang -</string>
+    <string name="text_cart">Keranjang</string>
+    <string name="text_notes">Catatan</string>
+    <string name="text_profile">Profil</string>
+    <string name="text_phone_number">Nomor Telepon</string>
+    <string name="text_name">Nama</string>
+    <string name="text_personal_info">Informasi Pribadi</string>
+    <string name="text_contact_info">Informasi Kontak</string>
+    <string name="text_logout">Keluar</string>
+    <string name="text_header_hello">Hai Binarian!</string>
+    <string name="text_header_greeting">Waktunya makan siang</string>
+    <string name="text_banner_desc">Dapatkan Diskon Spesial</string>
+    <string name="text_banner_discount">sampai 50%</string>
+    <string name="text_claim_voucher">Klaim Vocher</string>
+    <string name="text_categories">Kategori</string>
+    <string name="text_food_menu_list">Daftar Menu Makanan</string>
+    <string name="text_title_bottom_nav_cart">Keranjang</string>
+    <string name="text_title_bottom_nav_profile">Profil</string>
+    <string name="text_back_to_home">Kembali ke Home</string>
+    <string name="text_order_successful">Pesanan Berhasil</string>
+    <string name="text_menu_list_empty">Data Daftar Menu Kosong</string>
+    <string name="text_cart_list_empty">Data Daftar Keranjang Kosong</string>
+</resources>
