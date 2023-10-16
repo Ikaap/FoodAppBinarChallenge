@@ -55,6 +55,9 @@
     <string name="text_menu_list_empty">Menu List Data is Empty</string>
     <string name="text_cart_list_empty">Cart List Data is Empty</string>
 
+    <string name="text_welcome_to_nbinar_food">Welcome to\nBinar Food!</string>
+    <string name="text_start_your_day_with_a_great_taste">Start Your Day with a Great Taste</string>
+
     <string name="text_register">Register</string>
     <string name="text_already_have_an_account_login_here">Already have an Account ? Login Here</string>
 
