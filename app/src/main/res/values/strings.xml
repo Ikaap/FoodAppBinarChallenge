@@ -20,7 +20,7 @@
     <string name="text_0" translatable="false">0</string>
     <string name="text_total_price">Total Price</string>
     <string name="text_add_to_cart">Add to Cart -</string>
-  
+
     <string name="text_cart">Cart</string>
     <string name="text_notes">Notes</string>
 
@@ -54,4 +54,6 @@
     <string name="total_qty" translatable="false">x%s</string>
     <string name="text_menu_list_empty">Menu List Data is Empty</string>
     <string name="text_cart_list_empty">Cart List Data is Empty</string>
+    <string name="text_register">Register</string>
+    <string name="text_already_have_an_account_login_here">Already have an Account ? Login Here</string>
 </resources>
