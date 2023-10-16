@@ -54,6 +54,11 @@
     <string name="total_qty" translatable="false">x%s</string>
     <string name="text_menu_list_empty">Menu List Data is Empty</string>
     <string name="text_cart_list_empty">Cart List Data is Empty</string>
+
     <string name="text_register">Register</string>
     <string name="text_already_have_an_account_login_here">Already have an Account ? Login Here</string>
+
+    <string name="text_login">Login</string>
+    <string name="text_not_registered_yet_register_here">Not Registered yet ? Register Here</string>
+
 </resources>
