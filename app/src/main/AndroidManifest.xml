@@ -17,6 +17,12 @@
             android:name=".presentation.feature.splashscreen.SplashScreenActivity"
             android:exported="false" />
         <activity
+            android:name=".presentation.feature.register.RegisterActivity"
+             android:exported="false" />
+        <activity
+            android:name=".presentation.feature.login.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.feature.checkout.CheckoutActivity"
             android:exported="false" />
         <activity
