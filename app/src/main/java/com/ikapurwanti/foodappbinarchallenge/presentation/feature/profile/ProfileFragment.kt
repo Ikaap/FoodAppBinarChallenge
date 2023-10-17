@@ -57,9 +57,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun navigateToEditProfile() {
-        val intent = Intent(requireContext(), EditProfileActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        }
+        val intent = Intent(requireContext(), EditProfileActivity::class.java)
         startActivity(intent)
     }
 

@@ -16,6 +16,7 @@ import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityLoginBinding
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.HomeFragment
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.main.MainActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.register.RegisterActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.register.RegisterViewModel
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
@@ -74,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
                     binding.pbLoading.isVisible = false
                     binding.btnLogin.isVisible = true
                     binding.btnLogin.isEnabled = false
-                    navigateToMain()
+                    navigateToHome()
                 },
                 doOnLoading = {
                     binding.pbLoading.isVisible = true
@@ -94,8 +95,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToMain() {
-        val intent = Intent(this, HomeFragment::class.java).apply {
+    private fun navigateToHome() {
+        val intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         }
         startActivity(intent)
@@ -112,10 +113,7 @@ class LoginActivity : AppCompatActivity() {
     private fun isFormValid(): Boolean {
         val email = binding.layoutUserForm.etEmail.text.toString().trim()
         val password = binding.layoutUserForm.etPassword.text.toString().trim()
-        return checkEmailValidation(email) && checkPasswordValidation(
-            password,
-            binding.layoutUserForm.tilPassword
-        )
+        return checkEmailValidation(email) && checkPasswordValidation(password, binding.layoutUserForm.tilPassword)
     }
 
     private fun checkEmailValidation(email: String): Boolean {

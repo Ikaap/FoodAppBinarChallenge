@@ -15,6 +15,7 @@ import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityEditProfileBinding
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivitySplashScreenBinding
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.main.MainActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.profile.ProfileFragment
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.splashscreen.SplashScreenViewModel
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
@@ -58,11 +59,10 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun setClickListeners() {
-        binding.ivBackToProfile.setOnClickListener {
-            navigateToProfile()
-        }
         binding.btnChangeProfile.setOnClickListener {
             changeProfileData()
+            Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show()
+            navigateToProfile()
         }
         binding.tvChangePassword.setOnClickListener {
             requestChangePassword()
@@ -70,11 +70,10 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun navigateToProfile() {
-        val intent = Intent(this, ProfileFragment::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-        }
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
+
 
     private fun changeProfileData() {
         if (checkNameValidation()) {

@@ -19,6 +19,8 @@ interface FirebaseAuthDataSource {
 
     suspend fun updatePassword(newPassword: String): Boolean
 
+    suspend fun updateEmail(newEmail: String): Boolean
+
     fun sendChangePasswordRequestByEmail(): Boolean
 
     fun doLogout(): Boolean
@@ -61,6 +63,11 @@ class FirebaseAuthDataSourceImpl(private val firebaseAuth: FirebaseAuth): Fireba
 
     override suspend fun updatePassword(newPassword: String): Boolean {
         getCurrentUser()?.updatePassword(newPassword)?.await()
+        return true
+    }
+
+    override suspend fun updateEmail(newEmail: String): Boolean {
+        getCurrentUser()?.updateEmail(newEmail)?.await()
         return true
     }
 

@@ -17,6 +17,7 @@ import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityRegisterBinding
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.HomeFragment
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.login.LoginActivity
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.main.MainActivity
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import com.ikapurwanti.foodappbinarchallenge.utils.highLightWord
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
@@ -74,7 +75,7 @@ class RegisterActivity : AppCompatActivity() {
                     binding.pbLoading.isVisible = false
                     binding.btnRegister.isVisible = true
                     binding.btnRegister.isEnabled = false
-                    navigateToMain()
+                    navigateToHome()
                 },
                 doOnLoading = {
                     binding.pbLoading.isVisible = true
@@ -86,7 +87,7 @@ class RegisterActivity : AppCompatActivity() {
                     binding.btnRegister.isEnabled = true
                     Toast.makeText(
                         this,
-                        "Register Failed : ${it.exception?.message}",
+                        "Register Failed : ${it.exception?.message.orEmpty()}",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -94,8 +95,8 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToMain() {
-        val intent = Intent(this, HomeFragment::class.java).apply {
+    private fun navigateToHome() {
+        val intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         }
         startActivity(intent)
@@ -118,7 +119,10 @@ class RegisterActivity : AppCompatActivity() {
 
         return checkNameValidation(name) && checkEmailValidation(email)
                 && checkPasswordValidation(password, binding.layoutUserForm.tilPassword)
-                && checkPasswordValidation(confirmPassword, binding.layoutUserForm.tilConfirmPassword)
+                && checkPasswordValidation(
+            confirmPassword,
+            binding.layoutUserForm.tilConfirmPassword
+        )
                 && checkPasswordAndConfirmPassword(password, confirmPassword)
     }
 

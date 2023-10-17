@@ -40,32 +40,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_name_app"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.2" />
 
-    <Button
-        android:id="@+id/btn_login"
+    <FrameLayout
+        android:id="@+id/fl_btn_loading_state"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:background="@drawable/bg_primary_container_transparent"
-        android:text="@string/text_login"
-        android:textSize="18sp"
-        android:textFontWeight="700"
-        android:fontFamily="@font/inter_font"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_user_form" />
+        app:layout_constraintTop_toBottomOf="@id/layout_user_form">
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/pb_loading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/btn_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_login" />
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_primary_container_transparent"
+            android:fontFamily="@font/inter_font"
+            android:text="@string/text_login"
+            android:textFontWeight="700"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_user_form" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/pb_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_nav_to_register"
@@ -75,6 +80,6 @@
         android:text="@string/text_not_registered_yet_register_here"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_login" />
+        app:layout_constraintTop_toBottomOf="@id/fl_btn_loading_state" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

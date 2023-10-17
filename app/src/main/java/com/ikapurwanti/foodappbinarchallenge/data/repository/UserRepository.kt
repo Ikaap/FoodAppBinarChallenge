@@ -22,6 +22,7 @@ interface UserRepository {
     suspend fun updateProfile(fullName: String? = null, photoUri: Uri? = null): Flow<ResultWrapper<Boolean>>
 
     suspend fun updatePassword(newPassword: String) : Flow<ResultWrapper<Boolean>>
+    suspend fun updateEmail(newEmail: String): Flow<ResultWrapper<Boolean>>
 
     fun sendChangePasswordRequestByEmail() : Boolean
 }
@@ -61,7 +62,9 @@ class UserRepositoryImpl(private val firebaseAuthDataSource: FirebaseAuthDataSou
     override suspend fun updatePassword(newPassword: String): Flow<ResultWrapper<Boolean>> {
         return proceedFlow { firebaseAuthDataSource.updatePassword(newPassword)}
     }
-
+    override suspend fun updateEmail(newEmail: String): Flow<ResultWrapper<Boolean>> {
+        return proceedFlow { firebaseAuthDataSource.updateEmail(newEmail) }
+    }
     override fun sendChangePasswordRequestByEmail(): Boolean {
         return firebaseAuthDataSource.sendChangePasswordRequestByEmail()
     }
