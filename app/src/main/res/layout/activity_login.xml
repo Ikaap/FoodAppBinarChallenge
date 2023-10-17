@@ -7,37 +7,11 @@
     android:padding="16dp"
     tools:context=".presentation.feature.login.LoginActivity">
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_login"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:text="@string/text_login"-->
-    <!--        android:textSize="24sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_name_app"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="24dp"-->
-    <!--        android:fontFamily="@font/inria_serif_bold"-->
-    <!--        android:text="Binar Food"-->
-    <!--        android:textColor="@color/app_color_primary"-->
-    <!--        android:textSize="32sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/tv_login" />-->
-
     <ImageView
         android:id="@+id/iv_app_logo"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="42dp"
         android:src="@drawable/img_binar_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +49,9 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/bg_primary_container_transparent"
         android:text="@string/text_login"
+        android:textSize="18sp"
+        android:textFontWeight="700"
+        android:fontFamily="@font/inter_font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_user_form" />

@@ -85,6 +85,9 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/bg_primary_container_transparent"
         android:text="@string/text_change_profile"
+        android:textSize="18sp"
+        android:textFontWeight="700"
+        android:fontFamily="@font/inter_font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_user_form" />
@@ -108,6 +111,6 @@
         android:text="@string/text_change_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_register" />
+        app:layout_constraintTop_toBottomOf="@id/btn_change_profile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

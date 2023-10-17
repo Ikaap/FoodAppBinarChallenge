@@ -36,7 +36,6 @@
     <string name="text_personal_info">Personal Info</string>
     <string name="text_contact_info">Contact Info</string>
     <string name="text_password_data" translatable="false">********</string>
-    <string name="text_logout">Logout</string>
 
     <string name="text_header_hello">Hi Binarian!</string>
     <string name="text_header_greeting">It\'s lunch time</string>
