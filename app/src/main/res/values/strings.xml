@@ -55,13 +55,26 @@
     <string name="text_menu_list_empty">Menu List Data is Empty</string>
     <string name="text_cart_list_empty">Cart List Data is Empty</string>
 
-    <string name="text_welcome_to_nbinar_food">Welcome to\nBinar Food!</string>
-    <string name="text_start_your_day_with_a_great_taste">Start Your Day with a Great Taste</string>
+    <string name="text_start_your_day_with_a_great_taste">Start Your Day with\na Great Taste</string>
 
     <string name="text_register">Register</string>
     <string name="text_already_have_an_account_login_here">Already have an Account ? Login Here</string>
 
     <string name="text_login">Login</string>
     <string name="text_not_registered_yet_register_here">Not Registered yet ? Register Here</string>
+    <string name="text_full_name">Full Name</string>
+    <string name="text_confirm_password">Confirm Password</string>
+    <string name="text_binar_resto">Binar Resto</string>
+    <string name="text_login_here">Login Here</string>
+    <string name="text_register_here">Register Here</string>
+    <string name="text_error_name_cannot_empy">Name cannot be empty</string>
+    <string name="text_error_email_cannot_empy">Email cannot be empty</string>
+    <string name="text_error_email_invalid">Enter a valid format email</string>
+    <string name="text_error_password_cannot_empy">Password cannot be empty</string>
+    <string name="text_error_password_less_than_8_char">Password cannot less than 8 character</string>
+    <string name="text_error_password_does_not_match">Password doesn\'t match</string>
+    <string name="text_change_profile">Change Profile</string>
+    <string name="text_change_password">Change Password</string>
+    <string name="text_logout">Logout</string>
 
 </resources>
