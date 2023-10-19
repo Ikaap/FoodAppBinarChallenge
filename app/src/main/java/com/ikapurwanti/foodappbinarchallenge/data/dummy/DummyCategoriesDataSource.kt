@@ -1,38 +1,38 @@
 package com.ikapurwanti.foodappbinarchallenge.data.dummy
 
 import com.ikapurwanti.foodappbinarchallenge.R
-import com.ikapurwanti.foodappbinarchallenge.model.Categories
+import com.ikapurwanti.foodappbinarchallenge.model.Category
 
 
 interface DummyCategoriesDataSource {
-    fun getCategories(): List<Categories>
+    fun getCategories(): List<Category>
 }
 
 class DummyCategoriesDataSourceImpl() : DummyCategoriesDataSource {
-    override fun getCategories(): List<Categories> {
+    override fun getCategories(): List<Category> {
         return listOf(
-            Categories(
-                R.drawable.img_ctg_makanan,
+            Category(
+                "R.drawable.img_ctg_makanan",
                 "Chicken"
             ),
-            Categories(
-                R.drawable.img_ctg_burger,
+            Category(
+                "R.drawable.img_ctg_burger",
                 "Burger"
             ),
-            Categories(
-                R.drawable.img_ctg_coffee,
+            Category(
+                "R.drawable.img_ctg_coffee",
                 "Coffee"
             ),
-            Categories(
-                R.drawable.img_ctg_mie,
+            Category(
+                "R.drawable.img_ctg_mie",
                 "Noodle"
             ),
-            Categories(
-                R.drawable.img_ctg_snack,
+            Category(
+                "R.drawable.img_ctg_snack",
                 "Snack"
             ),
-            Categories(
-                R.drawable.img_ctg_minuman,
+            Category(
+                "R.drawable.img_ctg_minuman",
                 "Drink"
             ),
         )

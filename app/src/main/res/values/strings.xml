@@ -64,4 +64,7 @@
     <string name="text_login">Login</string>
     <string name="text_not_registered_yet_register_here">Not Registered yet ? Register Here</string>
 
+    <string name="text_menu_not_found">Menu not found</string>
+    <string name="text_category_not_found">Categories not found</string>
+
 </resources>

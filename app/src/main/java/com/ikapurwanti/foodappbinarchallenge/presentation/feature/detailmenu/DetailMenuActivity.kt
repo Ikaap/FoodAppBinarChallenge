@@ -44,7 +44,7 @@ class DetailMenuActivity : AppCompatActivity() {
 
     private fun showDetailMenu(menu: Menu?) {
         menu?.let { menu ->
-            binding.menuImage.load(menu.menuImg)
+            binding.menuImage.load(menu.imageUrl)
             binding.tvMenuName.text = menu.name
             binding.tvMenuPrice.text = "IDR ${menu.price}"
             binding.tvMenuDesc.text = menu.desc

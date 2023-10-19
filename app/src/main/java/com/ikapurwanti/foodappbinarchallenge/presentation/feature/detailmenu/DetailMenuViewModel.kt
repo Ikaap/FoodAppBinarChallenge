@@ -18,8 +18,8 @@ class DetailMenuViewModel
 
     val menu = extras?.getParcelable<Menu>(DetailMenuActivity.EXTRA_MENU)
 
-    val priceLiveData = MutableLiveData<Double>().apply {
-        postValue(0.0)
+    val priceLiveData = MutableLiveData<Int>().apply {
+        postValue(0)
     }
 
     val menuCountLiveData = MutableLiveData<Int>().apply {
@@ -34,14 +34,14 @@ class DetailMenuViewModel
     fun plusOrder() {
         val count = (menuCountLiveData.value ?: 0) + 1
         menuCountLiveData.postValue(count)
-        priceLiveData.postValue(menu?.price?.times(count) ?: 0.0)
+        priceLiveData.postValue(menu?.price?.times(count) ?: 0)
     }
 
     fun minusOrder() {
         val count = (menuCountLiveData.value ?: 0) - 1
         if ((menuCountLiveData.value ?: 0) <= 0) return
         menuCountLiveData.postValue(count)
-        priceLiveData.postValue(menu?.price?.times(count) ?: 0.0)
+        priceLiveData.postValue(menu?.price?.times(count) ?: 0)
     }
 
     fun addToCart() {

@@ -1,15 +1,15 @@
-package com.ikapurwanti.foodappbinarchallenge.data.network.api.model.menu
+package com.ikapurwanti.foodappbinarchallenge.data.network.api.model.category
 
 
 import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
 
 @Keep
-data class MenuResponse(
+data class CategoriesResponse(
     @SerializedName("code")
     val code: Int?,
     @SerializedName("data")
-    val data: List<MenuItemResponse>?,
+    val data: List<CategoryResponse>?,
     @SerializedName("message")
     val message: String?,
     @SerializedName("status")

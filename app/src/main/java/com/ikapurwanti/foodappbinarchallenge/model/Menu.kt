@@ -1,14 +1,17 @@
 package com.ikapurwanti.foodappbinarchallenge.model
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Menu(
-    var id: Int? = null,
-    val menuImg: Int = 0,
-    val name: String = "",
-    val price: Double = 0.0,
-    val rating: Double = 0.0,
-    val desc: String = ""
+    val id: Int? = null,
+    val address: String,
+    val desc: String,
+    val price: Int,
+    val formattedPrice: String,
+    val imageUrl: String,
+    val name: String,
+    val rating: Double
 ) : Parcelable
