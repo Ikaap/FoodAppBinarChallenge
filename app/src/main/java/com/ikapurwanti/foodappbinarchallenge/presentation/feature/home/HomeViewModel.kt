@@ -1,6 +1,5 @@
 package com.ikapurwanti.foodappbinarchallenge.presentation.feature.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,8 +11,6 @@ import com.ikapurwanti.foodappbinarchallenge.model.Category
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -43,9 +40,8 @@ class HomeViewModel(
 
     fun getMenu(category: String? = null){
         viewModelScope.launch(Dispatchers.IO) {
-            menuRepo.getMenu(if (category == "All") null else category).collect{
+            menuRepo.getMenu(if (category == "all") null else category).collect{
                 _menu.postValue(it)
-                Log.d("Category", menuRepo.toString())
             }
         }
     }

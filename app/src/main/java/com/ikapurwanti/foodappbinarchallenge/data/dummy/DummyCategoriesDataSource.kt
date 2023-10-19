@@ -12,28 +12,24 @@ class DummyCategoriesDataSourceImpl() : DummyCategoriesDataSource {
     override fun getCategories(): List<Category> {
         return listOf(
             Category(
-                "R.drawable.img_ctg_makanan",
-                "Chicken"
+                "https://raw.githubusercontent.com/hermasyp/CH3-asset-code-challenge/master/categories/ic_all_category.png",
+                "All"
             ),
             Category(
-                "R.drawable.img_ctg_burger",
+                "https://images.deliveryhero.io/image/fd-kh/Products/1944603.jpg?width=%s",
                 "Burger"
             ),
             Category(
-                "R.drawable.img_ctg_coffee",
-                "Coffee"
+                "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/07/13024827/ini-cara-membuat-mie-goreng-yang-lebih-sehat-dengan-bahan-sederhana-halodoc.jpg.webp",
+                "Mie"
             ),
             Category(
-                "R.drawable.img_ctg_mie",
-                "Noodle"
-            ),
-            Category(
-                "R.drawable.img_ctg_snack",
+                "https://d17qo5cceyilur.cloudfront.net/IEKuwltITNeTnnqQt8ka_IMG_2170.jpg",
                 "Snack"
             ),
             Category(
-                "R.drawable.img_ctg_minuman",
-                "Drink"
+                "https://imgcdn.solopos.com/@space/2022/09/es-teh-res.jpg",
+                "Minuman"
             ),
         )
     }

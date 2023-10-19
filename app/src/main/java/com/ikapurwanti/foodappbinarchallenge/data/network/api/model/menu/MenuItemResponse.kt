@@ -9,23 +9,24 @@ import com.ikapurwanti.foodappbinarchallenge.model.Menu
 data class MenuItemResponse(
     @SerializedName("id")
     val id: Int?,
-    @SerializedName("alamat_resto")
-    val address: String?,
-    @SerializedName("detail")
-    val desc: String?,
-    @SerializedName("harga")
-    val price: Int?,
-    @SerializedName("harga_format")
-    val formattedPrice: String?,
     @SerializedName("image_url")
     val imageUrl: String?,
     @SerializedName("nama")
     val name: String?,
+    @SerializedName("harga_format")
+    val formattedPrice: String?,
+    @SerializedName("harga")
+    val price: Int?,
     @SerializedName("rating")
-    val rating: Double?
+    val rating: Double?,
+    @SerializedName("detail")
+    val desc: String?,
+    @SerializedName("alamat_resto")
+    val address: String?,
 )
 
 fun MenuItemResponse.toMenu() = Menu(
+    id = this.id,
     address = this.address.orEmpty(),
     desc = this.desc.orEmpty(),
     price = this.price ?: 0,

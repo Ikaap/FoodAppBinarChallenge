@@ -7,11 +7,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Menu(
     val id: Int? = null,
-    val address: String,
-    val desc: String,
-    val price: Int,
-    val formattedPrice: String,
     val imageUrl: String,
     val name: String,
-    val rating: Double
+    val formattedPrice: String,
+    val price: Int,
+    val rating: Double,
+    val desc: String,
+    val address: String,
 ) : Parcelable

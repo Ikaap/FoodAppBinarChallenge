@@ -19,11 +19,6 @@ class MenuListAdapter(
     private val dataDiffer = AsyncListDiffer(this, object : DiffUtil.ItemCallback<Menu>(){
         override fun areItemsTheSame(oldItem: Menu, newItem: Menu): Boolean {
             return oldItem.id == newItem.id
-//            return oldItem.name == newItem.name &&
-//                    oldItem.imageUrl == newItem.imageUrl &&
-//                    oldItem.price == newItem.price &&
-//                    oldItem.rating == newItem.rating &&
-//                    oldItem.desc == newItem.desc
 
         }
 

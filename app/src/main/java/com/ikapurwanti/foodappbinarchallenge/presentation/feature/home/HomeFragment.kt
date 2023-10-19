@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
 
     private val adapterCategories: CategoriesListAdapter by lazy {
         CategoriesListAdapter{
-            viewModel.getMenu(it.name)
+            viewModel.getMenu(it.name?.toLowerCase())
         }
     }
 
@@ -68,16 +68,21 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rvListCategories()
         rvListMenu()
-//        observeListMenu()
-//        observeLayout()
         getData()
         observeData()
         observeLayout()
         setupSwitchLayout()
     }
 
+    private fun rvListMenu() {
+        val span = if (adapterMenu.adapterLayoutMode == AdapterLayoutMode.LINEAR) 1 else 2
+        binding.rvMenuList.apply {
+            layoutManager = GridLayoutManager(requireContext(), span)
+            adapter = adapterMenu
+            adapterMenu.refreshList()
+        }
+    }
     private fun getData() {
         viewModel.getCategories()
         viewModel.getMenu()
@@ -93,7 +98,7 @@ class HomeFragment : Fragment() {
                     binding.layoutStateCategory.tvError.isVisible = false
                     binding.rvCategories.apply {
                         layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                        adapter = this@HomeFragment.adapterCategories
+                        adapter = adapterCategories
                     }
                     it.payload?.let { data ->
                         adapterCategories.setData(data)
@@ -131,8 +136,8 @@ class HomeFragment : Fragment() {
                     binding.layoutStateMenu.pbLoading.isVisible = false
                     binding.layoutStateMenu.tvError.isVisible = false
                     binding.rvMenuList.apply {
-                        layoutManager = GridLayoutManager(requireContext(),span )
-                        adapter = this@HomeFragment.adapterMenu
+                        layoutManager = GridLayoutManager(requireContext(),span)
+                        adapter = adapterMenu
                     }
                     it.payload?.let { data ->
                         adapterMenu.setData(data)
@@ -162,66 +167,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun rvListCategories() {
-        binding.rvCategories.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = adapterCategories
-            adapterCategories.refreshList()
-        }
-//        binding.rvCategories.adapter = adapterCategories
-//        binding.rvCategories.layoutManager =
-//            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-    }
-
-    private fun rvListMenu() {
-        val span = if (adapterMenu.adapterLayoutMode == AdapterLayoutMode.LINEAR) 1 else 2
-        binding.rvMenuList.apply {
-            layoutManager = GridLayoutManager(requireContext(), span)
-            adapter = adapterMenu
-            adapterMenu.refreshList()
-        }
-    }
-
-//    private fun observeListMenu() {
-//        viewModel.menuList.observe(viewLifecycleOwner) { result ->
-//            val span = if (adapterMenu.adapterLayoutMode == AdapterLayoutMode.LINEAR) 1 else 2
-//            result.proceedWhen(
-//                doOnSuccess = {
-//                    binding.rvMenuList.isVisible = true
-//                    binding.layoutState.root.isVisible = false
-//                    binding.layoutState.pbLoading.isVisible = false
-//                    binding.layoutState.tvError.isVisible = false
-//                    binding.rvMenuList.apply {
-//                        layoutManager = GridLayoutManager(requireContext(), span)
-//                        adapter = this@HomeFragment.adapterMenu
-//                    }
-//                    result.payload?.let { item ->
-//                        adapterMenu.setData(item)
-//                    }
-//                },
-//                doOnLoading = {
-//                    binding.layoutState.root.isVisible = true
-//                    binding.layoutState.pbLoading.isVisible = true
-//                    binding.layoutState.tvError.isVisible = false
-//                    binding.rvMenuList.isVisible = false
-//                },
-//                doOnError = { err ->
-//                    binding.layoutState.root.isVisible = true
-//                    binding.layoutState.pbLoading.isVisible = false
-//                    binding.layoutState.tvError.isVisible = true
-//                    binding.layoutState.tvError.text = err.exception?.message.orEmpty()
-//                    binding.rvMenuList.isVisible = false
-//                },
-//                doOnEmpty = {
-//                    binding.layoutState.root.isVisible = true
-//                    binding.layoutState.tvError.isVisible = true
-//                    binding.layoutState.tvError.text = getString(R.string.text_menu_list_empty)
-//                    binding.layoutState.pbLoading.isVisible = false
-//                    binding.rvMenuList.isVisible = false
-//                }
-//            )
-//        }
-//    }
 
     private fun observeLayout() {
         viewModel.appLayoutGridLiveData.observe(viewLifecycleOwner) { isGridLayout ->
