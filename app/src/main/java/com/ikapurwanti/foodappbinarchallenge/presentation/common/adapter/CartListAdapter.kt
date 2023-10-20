@@ -13,6 +13,7 @@ import com.ikapurwanti.foodappbinarchallenge.databinding.ItemCheckoutListBinding
 import com.ikapurwanti.foodappbinarchallenge.databinding.ItemListCartBinding
 import com.ikapurwanti.foodappbinarchallenge.model.Cart
 import com.ikapurwanti.foodappbinarchallenge.utils.doneEditing
+import com.ikapurwanti.foodappbinarchallenge.utils.toCurrencyFormat
 
 class CartListAdapter(
     private val cartListener: CartListener? = null
@@ -67,7 +68,7 @@ class CartViewHolder(
                 crossfade(true)
             }
             tvMenuName.text = item.menuName
-            tvMenuPrice.text = "IDR ${(item.itemQuantity * item.menuPrice)}"
+            tvMenuPrice.text = (item.itemQuantity * item.menuPrice).toCurrencyFormat()
             tvCalculateOrder.text = item.itemQuantity.toString()
 
         }
@@ -108,7 +109,7 @@ class CartCheckoutViewHolder(
                 crossfade(true)
             }
             tvMenuName.text = item.menuName
-            tvMenuPrice.text = "IDR ${(item.itemQuantity * item.menuPrice)}"
+            tvMenuPrice.text = (item.itemQuantity * item.menuPrice).toCurrencyFormat()
             tvTotalCalculateOrder.text =
                 itemView.rootView.context.getString(
                     R.string.total_qty,
