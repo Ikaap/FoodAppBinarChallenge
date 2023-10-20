@@ -12,19 +12,17 @@ import com.ikapurwanti.foodappbinarchallenge.core.ViewHolderBinder
 import com.ikapurwanti.foodappbinarchallenge.databinding.ItemCheckoutListBinding
 import com.ikapurwanti.foodappbinarchallenge.databinding.ItemListCartBinding
 import com.ikapurwanti.foodappbinarchallenge.model.Cart
-import com.ikapurwanti.foodappbinarchallenge.model.CartMenu
 import com.ikapurwanti.foodappbinarchallenge.utils.doneEditing
 
 class CartListAdapter(
     private val cartListener: CartListener? = null
 ) : RecyclerView.Adapter<ViewHolder>() {
 
-    private val dataDiffer = AsyncListDiffer(this, object : DiffUtil.ItemCallback<CartMenu>(){
-        override fun areItemsTheSame(oldItem: CartMenu, newItem: CartMenu): Boolean {
-            return oldItem.cart.id == newItem.cart.id &&
-                    oldItem.menu.id == newItem.menu.id
+    private val dataDiffer = AsyncListDiffer(this, object : DiffUtil.ItemCallback<Cart>(){
+        override fun areItemsTheSame(oldItem: Cart, newItem: Cart): Boolean {
+            return oldItem.id == newItem.id
         }
-        override fun areContentsTheSame(oldItem: CartMenu, newItem: CartMenu): Boolean {
+        override fun areContentsTheSame(oldItem: Cart, newItem: Cart): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }
     })
@@ -44,54 +42,53 @@ class CartListAdapter(
     override fun getItemCount(): Int = dataDiffer.currentList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        (holder as ViewHolderBinder<CartMenu>).bind(dataDiffer.currentList[position])
+        (holder as ViewHolderBinder<Cart>).bind(dataDiffer.currentList[position])
     }
 
-    fun setData(data: List<CartMenu>) {
+    fun setData(data: List<Cart>) {
         dataDiffer.submitList(data)
     }
-
 
 }
 
 class CartViewHolder(
     private val binding : ItemListCartBinding,
     private val cartListener: CartListener?
-) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<CartMenu>{
-    override fun bind(item: CartMenu) {
+) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart>{
+    override fun bind(item: Cart) {
         setCartData(item)
         setCartNotes(item)
         setClickListeners(item)
     }
 
-    private fun setCartData(item: CartMenu) {
+    private fun setCartData(item: Cart) {
         with(binding){
-            ivMenuImage.load(item.menu.menuImg){
+            ivMenuImage.load(item.menuImgUrl){
                 crossfade(true)
             }
-            tvMenuName.text = item.menu.name
-            tvMenuPrice.text = "IDR ${(item.cart.itemQuantity * item.menu.price)}"
-            tvCalculateOrder.text = item.cart.itemQuantity.toString()
+            tvMenuName.text = item.menuName
+            tvMenuPrice.text = "IDR ${(item.itemQuantity * item.menuPrice)}"
+            tvCalculateOrder.text = item.itemQuantity.toString()
 
         }
     }
 
-    private fun setCartNotes(item: CartMenu) {
-        binding.etNoteMenu.setText(item.cart.itemNotes)
+    private fun setCartNotes(item: Cart) {
+        binding.etNoteMenu.setText(item.itemNotes)
         binding.etNoteMenu.doneEditing{
             binding.etNoteMenu.clearFocus()
-            val newItem = item.cart.copy().apply {
+            val newItem = item.copy().apply {
                 itemNotes = binding.etNoteMenu.text.toString().trim()
             }
             cartListener?.onUserDoneEditingNotes(newItem)
         }
     }
 
-    private fun setClickListeners(item: CartMenu) {
+    private fun setClickListeners(item: Cart) {
         with(binding){
-            tvMinOrder.setOnClickListener {cartListener?.onMinusTotalItemCartClicked(item.cart)}
-            tvPlusOrder.setOnClickListener {cartListener?.onPlusTotalItemCartClicked(item.cart)}
-            ivDelete.setOnClickListener {cartListener?.onRemoveCartClicked(item.cart)}
+            tvMinOrder.setOnClickListener {cartListener?.onMinusTotalItemCartClicked(item)}
+            tvPlusOrder.setOnClickListener {cartListener?.onPlusTotalItemCartClicked(item)}
+            ivDelete.setOnClickListener {cartListener?.onRemoveCartClicked(item)}
         }
     }
 
@@ -99,29 +96,29 @@ class CartViewHolder(
 
 class CartCheckoutViewHolder(
     private val binding: ItemCheckoutListBinding,
-) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<CartMenu>{
-    override fun bind(item: CartMenu) {
+) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart>{
+    override fun bind(item: Cart) {
         setCartData(item)
         setCartNotes(item)
     }
 
-    private fun setCartData(item: CartMenu) {
+    private fun setCartData(item: Cart) {
         with(binding){
-            ivMenuImage.load(item.menu.menuImg){
+            ivMenuImage.load(item.menuImgUrl){
                 crossfade(true)
             }
-            tvMenuName.text = item.menu.name
-            tvMenuPrice.text = "IDR ${(item.cart.itemQuantity * item.menu.price)}"
+            tvMenuName.text = item.menuName
+            tvMenuPrice.text = "IDR ${(item.itemQuantity * item.menuPrice)}"
             tvTotalCalculateOrder.text =
                 itemView.rootView.context.getString(
                     R.string.total_qty,
-                    item.cart.itemQuantity.toString()
+                    item.itemQuantity.toString()
                 )
         }
     }
 
-    private fun setCartNotes(item: CartMenu){
-        binding.tvNoteMenu.text = item.cart.itemNotes
+    private fun setCartNotes(item: Cart){
+        binding.tvNoteMenu.text = item.itemNotes
     }
 
 }

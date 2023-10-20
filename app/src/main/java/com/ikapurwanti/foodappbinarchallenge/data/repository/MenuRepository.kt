@@ -1,33 +1,31 @@
 package com.ikapurwanti.foodappbinarchallenge.data.repository
 
-import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.MenuDataSource
-import com.ikapurwanti.foodappbinarchallenge.data.local.database.mapper.toMenuList
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.datasource.RestaurantDataSource
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.model.category.toCategoryList
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.model.menu.toMenuList
+import com.ikapurwanti.foodappbinarchallenge.model.Category
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
-import com.ikapurwanti.foodappbinarchallenge.utils.proceed
-import kotlinx.coroutines.delay
+import com.ikapurwanti.foodappbinarchallenge.utils.proceedFlow
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
 
 interface MenuRepository {
-    fun getMenu(): Flow<ResultWrapper<List<Menu>>>
+    fun getCategories(): Flow<ResultWrapper<List<Category>>>
+    fun getMenu(category: String? = null): Flow<ResultWrapper<List<Menu>>>
 }
 
 class MenuRepositoryImpl(
-    private val menuDataSource: MenuDataSource,
+    private val apiDataSource: RestaurantDataSource
 ) : MenuRepository {
-    override fun getMenu(): Flow<ResultWrapper<List<Menu>>> {
-        return menuDataSource.getAllMenu().map {
-            proceed { it.toMenuList() }
-        }.map {
-            if (it.payload?.isEmpty() == true)
-                ResultWrapper.Empty(it.payload)
-            else
-                it
-        }.onStart {
-            emit(ResultWrapper.Loading())
-            delay(1500)
+    override fun getCategories(): Flow<ResultWrapper<List<Category>>> {
+        return proceedFlow {
+            apiDataSource.getCategories().data?.toCategoryList() ?: emptyList()
+        }
+    }
+
+    override fun getMenu(category: String?): Flow<ResultWrapper<List<Menu>>> {
+        return proceedFlow {
+            apiDataSource.getMenu(category).data?.toMenuList() ?: emptyList()
         }
     }
 

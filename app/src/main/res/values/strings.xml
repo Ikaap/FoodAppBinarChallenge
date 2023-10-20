@@ -77,4 +77,7 @@
     <string name="text_logout">Logout</string>
     <string name="text_edit_profile">Edit Profile</string>
 
+    <string name="text_menu_not_found">Menu not found</string>
+    <string name="text_category_not_found">Categories not found</string>
+
 </resources>

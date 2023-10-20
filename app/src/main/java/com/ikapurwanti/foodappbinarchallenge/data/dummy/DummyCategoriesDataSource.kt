@@ -1,39 +1,34 @@
 package com.ikapurwanti.foodappbinarchallenge.data.dummy
 
-import com.ikapurwanti.foodappbinarchallenge.R
-import com.ikapurwanti.foodappbinarchallenge.model.Categories
+import com.ikapurwanti.foodappbinarchallenge.model.Category
 
 
 interface DummyCategoriesDataSource {
-    fun getCategories(): List<Categories>
+    fun getCategories(): List<Category>
 }
 
 class DummyCategoriesDataSourceImpl() : DummyCategoriesDataSource {
-    override fun getCategories(): List<Categories> {
+    override fun getCategories(): List<Category> {
         return listOf(
-            Categories(
-                R.drawable.img_ctg_makanan,
-                "Chicken"
+            Category(
+                "https://raw.githubusercontent.com/hermasyp/CH3-asset-code-challenge/master/categories/ic_all_category.png",
+                "All"
             ),
-            Categories(
-                R.drawable.img_ctg_burger,
+            Category(
+                "https://images.deliveryhero.io/image/fd-kh/Products/1944603.jpg?width=%s",
                 "Burger"
             ),
-            Categories(
-                R.drawable.img_ctg_coffee,
-                "Coffee"
+            Category(
+                "https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/07/13024827/ini-cara-membuat-mie-goreng-yang-lebih-sehat-dengan-bahan-sederhana-halodoc.jpg.webp",
+                "Mie"
             ),
-            Categories(
-                R.drawable.img_ctg_mie,
-                "Noodle"
-            ),
-            Categories(
-                R.drawable.img_ctg_snack,
+            Category(
+                "https://d17qo5cceyilur.cloudfront.net/IEKuwltITNeTnnqQt8ka_IMG_2170.jpg",
                 "Snack"
             ),
-            Categories(
-                R.drawable.img_ctg_minuman,
-                "Drink"
+            Category(
+                "https://imgcdn.solopos.com/@space/2022/09/es-teh-res.jpg",
+                "Minuman"
             ),
         )
     }

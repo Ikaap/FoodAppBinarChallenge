@@ -2,23 +2,26 @@ package com.ikapurwanti.foodappbinarchallenge.presentation.feature.cart
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.ikapurwanti.foodappbinarchallenge.R
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.AppDatabase
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.CartDatabaseDataSource
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.datasource.RestaurantApiDataSource
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.service.RestaurantService
 import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.FragmentCartBinding
 import com.ikapurwanti.foodappbinarchallenge.model.Cart
-import com.ikapurwanti.foodappbinarchallenge.presentation.feature.checkout.CheckoutActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartListAdapter
 import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartListener
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.checkout.CheckoutActivity
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
 
@@ -30,7 +33,10 @@ class CartFragment : Fragment() {
         val database = AppDatabase.getInstance(requireContext())
         val cartDao = database.cartDao()
         val cartDataSource = CartDatabaseDataSource(cartDao)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource)
+        val chuckerInterceptor = ChuckerInterceptor(requireContext().applicationContext)
+        val service = RestaurantService.invoke(chuckerInterceptor)
+        val apiDataSource = RestaurantApiDataSource(service)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
         GenericViewModelFactory.create(CartViewModel(repo))
     }
 

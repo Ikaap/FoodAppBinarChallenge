@@ -13,7 +13,7 @@ class LinearMenuItemViewHolder(
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Menu> {
     override fun bind(menu: Menu) {
         with(binding) {
-            ivMenuImage.load(menu.menuImg)
+            ivMenuImage.load(menu.imageUrl)
             tvMenuName.text = menu.name
             tvMenuPrice.text = "IDR ${menu.price}"
             tvMenuRating.text = menu.rating.toString()
@@ -30,7 +30,7 @@ class GridMenuItemViewHolder(
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Menu> {
     override fun bind(menu: Menu) {
         with(binding) {
-            ivMenuImage.load(menu.menuImg)
+            ivMenuImage.load(menu.imageUrl)
             tvMenuName.text = menu.name
             tvMenuPrice.text = "IDR ${menu.price}"
             tvMenuRating.text = menu.rating.toString()

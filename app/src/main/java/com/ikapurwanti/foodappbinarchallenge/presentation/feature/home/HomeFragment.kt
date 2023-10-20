@@ -10,13 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.ikapurwanti.foodappbinarchallenge.R
-import com.ikapurwanti.foodappbinarchallenge.data.dummy.DummyCategoriesDataSource
-import com.ikapurwanti.foodappbinarchallenge.data.dummy.DummyCategoriesDataSourceImpl
-import com.ikapurwanti.foodappbinarchallenge.data.local.database.AppDatabase
-import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.MenuDatabaseDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.local.datastore.AppPreferenceDataSourceImpl
 import com.ikapurwanti.foodappbinarchallenge.data.local.datastore.appDataStore
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.datasource.RestaurantApiDataSource
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.service.RestaurantService
 import com.ikapurwanti.foodappbinarchallenge.data.repository.MenuRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.MenuRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.FragmentHomeBinding
@@ -37,20 +36,22 @@ class HomeFragment : Fragment() {
             navigateToDetailMenu(it)
         }
     }
-    private val adapterCategories = CategoriesListAdapter()
-    private val datasourceCategories: DummyCategoriesDataSource by lazy {
-        DummyCategoriesDataSourceImpl()
-    }
 
     private fun navigateToDetailMenu(menu: Menu) {
         DetailMenuActivity.startActivity(requireContext(), menu)
     }
 
+    private val adapterCategories: CategoriesListAdapter by lazy {
+        CategoriesListAdapter{
+            viewModel.getMenu(it.name)
+        }
+    }
+
     private val viewModel: HomeViewModel by viewModels {
-        val database = AppDatabase.getInstance(requireContext())
-        val menuDao = database.menuDao()
-        val menuDataSource = MenuDatabaseDataSource(menuDao)
-        val repo: MenuRepository = MenuRepositoryImpl(menuDataSource)
+        val chuckerInterceptor = ChuckerInterceptor(requireContext().applicationContext)
+        val service = RestaurantService.invoke(chuckerInterceptor)
+        val restaurantDataSource = RestaurantApiDataSource(service)
+        val repo: MenuRepository = MenuRepositoryImpl(restaurantDataSource)
         val dataStore = this.requireContext().appDataStore
         val dataStoreHelper = PreferenceDataStoreHelperImpl(dataStore)
         val appPreferenceDataSource = AppPreferenceDataSourceImpl(dataStoreHelper)
@@ -69,18 +70,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rvListCategories()
         rvListMenu()
-        observeListMenu()
+        getData()
+        observeData()
         observeLayout()
         setupSwitchLayout()
-    }
-
-    private fun rvListCategories() {
-        binding.rvCategories.adapter = adapterCategories
-        binding.rvCategories.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        adapterCategories.setData(datasourceCategories.getCategories())
     }
 
     private fun rvListMenu() {
@@ -91,47 +85,93 @@ class HomeFragment : Fragment() {
             adapterMenu.refreshList()
         }
     }
+    private fun getData() {
+        viewModel.getCategories()
+        viewModel.getMenu()
+    }
 
-    private fun observeListMenu() {
-        viewModel.menuList.observe(viewLifecycleOwner) { result ->
-            val span = if (adapterMenu.adapterLayoutMode == AdapterLayoutMode.LINEAR) 1 else 2
-            result.proceedWhen(
+    private fun observeData() {
+        viewModel.categories.observe(viewLifecycleOwner){
+            it.proceedWhen(
                 doOnSuccess = {
-                    binding.rvMenuList.isVisible = true
-                    binding.layoutState.root.isVisible = false
-                    binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = false
-                    binding.rvMenuList.apply {
-                        layoutManager = GridLayoutManager(requireContext(), span)
-                        adapter = this@HomeFragment.adapterMenu
+                    binding.rvCategories.isVisible = true
+                    binding.layoutStateCategory.root.isVisible = false
+                    binding.layoutStateCategory.pbLoading.isVisible = false
+                    binding.layoutStateCategory.tvError.isVisible = false
+                    binding.rvCategories.apply {
+                        layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                        adapter = adapterCategories
                     }
-                    result.payload?.let { item ->
-                        adapterMenu.setData(item)
+                    it.payload?.let { data ->
+                        adapterCategories.setData(data)
                     }
                 },
                 doOnLoading = {
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.pbLoading.isVisible = true
-                    binding.layoutState.tvError.isVisible = false
-                    binding.rvMenuList.isVisible = false
+                    binding.rvCategories.isVisible = false
+                    binding.layoutStateCategory.root.isVisible = true
+                    binding.layoutStateCategory.pbLoading.isVisible = true
+                    binding.layoutStateCategory.tvError.isVisible = false
                 },
-                doOnError = { err ->
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.pbLoading.isVisible = false
-                    binding.layoutState.tvError.isVisible = true
-                    binding.layoutState.tvError.text = err.exception?.message.orEmpty()
-                    binding.rvMenuList.isVisible = false
+                doOnError = {
+                    binding.rvCategories.isVisible = false
+                    binding.layoutStateCategory.root.isVisible = true
+                    binding.layoutStateCategory.pbLoading.isVisible = false
+                    binding.layoutStateCategory.tvError.isVisible = true
+                    binding.layoutStateCategory.tvError.text = it.exception?.message
                 },
                 doOnEmpty = {
-                    binding.layoutState.root.isVisible = true
-                    binding.layoutState.tvError.isVisible = true
-                    binding.layoutState.tvError.text = getString(R.string.text_menu_list_empty)
-                    binding.layoutState.pbLoading.isVisible = false
+                    binding.rvCategories.isVisible = false
+                    binding.layoutStateCategory.root.isVisible = true
+                    binding.layoutStateCategory.pbLoading.isVisible = false
+                    binding.layoutStateCategory.tvError.isVisible = true
+                    binding.layoutStateCategory.tvError.text = getString(R.string.text_category_not_found)
+                }
+            )
+        }
+
+        viewModel.menu.observe(viewLifecycleOwner){
+            val span = if (adapterMenu.adapterLayoutMode == AdapterLayoutMode.LINEAR) 1 else 2
+            it.proceedWhen(
+                doOnSuccess = {
+                    binding.rvMenuList.isVisible = true
+                    binding.layoutStateMenu.root.isVisible = false
+                    binding.layoutStateMenu.pbLoading.isVisible = false
+                    binding.layoutStateMenu.tvError.isVisible = false
+                    binding.rvMenuList.apply {
+                        layoutManager = GridLayoutManager(requireContext(),span)
+                        adapter = adapterMenu
+                    }
+
+//                    binding.rvMenuList.smoothScrollToPosition(0)
+                    it.payload?.let { data ->
+                        adapterMenu.setData(data)
+                        binding.rvMenuList.smoothScrollToPosition(0)
+                    }
+                },
+                doOnLoading = {
                     binding.rvMenuList.isVisible = false
+                    binding.layoutStateMenu.root.isVisible = true
+                    binding.layoutStateMenu.pbLoading.isVisible = true
+                    binding.layoutStateMenu.tvError.isVisible = false
+                },
+                doOnError = {
+                    binding.rvMenuList.isVisible = false
+                    binding.layoutStateMenu.root.isVisible = true
+                    binding.layoutStateMenu.pbLoading.isVisible = false
+                    binding.layoutStateMenu.tvError.isVisible = true
+                    binding.layoutStateMenu.tvError.text = it.exception?.message
+                },
+                doOnEmpty = {
+                    binding.rvMenuList.isVisible = false
+                    binding.layoutStateMenu.root.isVisible = true
+                    binding.layoutStateMenu.pbLoading.isVisible = false
+                    binding.layoutStateMenu.tvError.isVisible = true
+                    binding.layoutStateMenu.tvError.text = getString(R.string.text_menu_not_found)
                 }
             )
         }
     }
+
 
     private fun observeLayout() {
         viewModel.appLayoutGridLiveData.observe(viewLifecycleOwner) { isGridLayout ->
