@@ -1,8 +1,8 @@
 package com.ikapurwanti.foodappbinarchallenge.data.network.api.model.menu
 
 
-import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 
 @Keep

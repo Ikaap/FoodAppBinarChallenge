@@ -5,11 +5,6 @@ import com.ikapurwanti.foodappbinarchallenge.data.network.api.model.menu.MenuRes
 import com.ikapurwanti.foodappbinarchallenge.data.network.api.model.order.OrderRequest
 import com.ikapurwanti.foodappbinarchallenge.data.network.api.model.order.OrderResponse
 import com.ikapurwanti.foodappbinarchallenge.data.network.api.service.RestaurantService
-import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface RestaurantDataSource {
     suspend fun getMenu(category: String? = null): MenuResponse

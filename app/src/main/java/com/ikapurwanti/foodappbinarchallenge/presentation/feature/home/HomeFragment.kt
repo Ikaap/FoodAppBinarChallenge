@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.ikapurwanti.foodappbinarchallenge.R
 import com.ikapurwanti.foodappbinarchallenge.data.local.datastore.AppPreferenceDataSourceImpl
 import com.ikapurwanti.foodappbinarchallenge.data.local.datastore.appDataStore
@@ -42,12 +43,13 @@ class HomeFragment : Fragment() {
 
     private val adapterCategories: CategoriesListAdapter by lazy {
         CategoriesListAdapter{
-            viewModel.getMenu(it.name?.toLowerCase())
+            viewModel.getMenu(it.name)
         }
     }
 
     private val viewModel: HomeViewModel by viewModels {
-        val service = RestaurantService.invoke()
+        val chuckerInterceptor = ChuckerInterceptor(requireContext().applicationContext)
+        val service = RestaurantService.invoke(chuckerInterceptor)
         val restaurantDataSource = RestaurantApiDataSource(service)
         val repo: MenuRepository = MenuRepositoryImpl(restaurantDataSource)
         val dataStore = this.requireContext().appDataStore
@@ -139,8 +141,11 @@ class HomeFragment : Fragment() {
                         layoutManager = GridLayoutManager(requireContext(),span)
                         adapter = adapterMenu
                     }
+
+//                    binding.rvMenuList.smoothScrollToPosition(0)
                     it.payload?.let { data ->
                         adapterMenu.setData(data)
+                        binding.rvMenuList.smoothScrollToPosition(0)
                     }
                 },
                 doOnLoading = {

@@ -1,6 +1,5 @@
 package com.ikapurwanti.foodappbinarchallenge.data.dummy
 
-import com.ikapurwanti.foodappbinarchallenge.R
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 
 

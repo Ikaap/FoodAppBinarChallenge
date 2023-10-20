@@ -4,6 +4,9 @@ import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.Cart
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.entity.CartEntity
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.mapper.toCartEntity
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.mapper.toCartList
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.datasource.RestaurantDataSource
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.model.order.OrderItemRequest
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.model.order.OrderRequest
 import com.ikapurwanti.foodappbinarchallenge.model.Cart
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
@@ -23,10 +26,12 @@ interface CartRepository {
     suspend fun setCartNotes(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun deleteAllCart()
+    suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>>
 }
 
 class CartRepositoryImpl(
-    private val cartDataSource: CartDataSource
+    private val cartDataSource: CartDataSource,
+    private val restaurantDataSource: RestaurantDataSource
 ) : CartRepository {
     override fun getCartData(): Flow<ResultWrapper<Pair<List<Cart>, Int>>> {
         return cartDataSource.getAllCarts()
@@ -98,6 +103,16 @@ class CartRepositoryImpl(
 
     override suspend fun deleteAllCart() {
         return cartDataSource.deleteAllCartItems()
+    }
+
+    override suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>> {
+        return proceedFlow {
+            val orderItems = items.map {
+                OrderItemRequest(it.menuName, it.itemQuantity, it.itemNotes, it.menuPrice)
+            }
+            val orderRequest = OrderRequest(orderItems)
+            restaurantDataSource.createOrder(orderRequest).status == true
+        }
     }
 
 }

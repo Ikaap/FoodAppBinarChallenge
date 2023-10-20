@@ -24,10 +24,3 @@ fun Cart?.toCartEntity() = CartEntity(
 )
 
 fun List<CartEntity?>.toCartList() = this.map { it.toCart() }
-//
-//fun CartMenuRelation.toCartMenu() = CartMenu(
-//    cart = this.cart.toCart(),
-//    menu = this.menu.toMenu()
-//)
-//
-//fun List<CartMenuRelation>.toCartMenuList() = this.map { it.toCartMenu() }

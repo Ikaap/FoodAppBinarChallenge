@@ -1,5 +1,6 @@
 package com.ikapurwanti.foodappbinarchallenge.data.network.api.service
 
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.ikapurwanti.foodappbinarchallenge.BuildConfig
 import com.ikapurwanti.foodappbinarchallenge.data.network.api.model.category.CategoriesResponse
 import com.ikapurwanti.foodappbinarchallenge.data.network.api.model.menu.MenuResponse
@@ -27,8 +28,9 @@ interface RestaurantService {
 
     companion object {
         @JvmStatic
-        operator fun invoke(): RestaurantService {
+        operator fun invoke(chucker: ChuckerInterceptor): RestaurantService {
             val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(chucker)
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .build()

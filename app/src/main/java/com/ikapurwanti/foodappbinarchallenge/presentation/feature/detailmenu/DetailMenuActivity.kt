@@ -3,14 +3,17 @@ package com.ikapurwanti.foodappbinarchallenge.presentation.feature.detailmenu
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.AppDatabase
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.CartDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.CartDatabaseDataSource
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.datasource.RestaurantApiDataSource
+import com.ikapurwanti.foodappbinarchallenge.data.network.api.service.RestaurantService
 import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityDetailMenuBinding
@@ -28,7 +31,10 @@ class DetailMenuActivity : AppCompatActivity() {
         val database = AppDatabase.getInstance(this)
         val cartDao = database.cartDao()
         val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource)
+        val chuckerInterceptor = ChuckerInterceptor(this.applicationContext)
+        val service = RestaurantService.invoke(chuckerInterceptor)
+        val apiDataSource = RestaurantApiDataSource(service)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
         GenericViewModelFactory.create(DetailMenuViewModel(intent?.extras, repo))
     }
 

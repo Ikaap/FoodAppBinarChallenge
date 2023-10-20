@@ -12,7 +12,6 @@ import com.ikapurwanti.foodappbinarchallenge.core.ViewHolderBinder
 import com.ikapurwanti.foodappbinarchallenge.databinding.ItemCheckoutListBinding
 import com.ikapurwanti.foodappbinarchallenge.databinding.ItemListCartBinding
 import com.ikapurwanti.foodappbinarchallenge.model.Cart
-import com.ikapurwanti.foodappbinarchallenge.model.CartMenu
 import com.ikapurwanti.foodappbinarchallenge.utils.doneEditing
 
 class CartListAdapter(
