@@ -4,64 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/screenBackground"
     android:padding="16dp"
-    tools:context=".presentation.feature.register.RegisterActivity">
+    tools:context=".presentation.feature.profile.editprofile.EditProfileActivity">
 
-    <ImageView
-        android:id="@+id/iv_app_logo"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_header_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_font"
+            android:text="@string/text_edit_profile"
+            android:textColor="@color/app_color_primary"
+            android:textFontWeight="700"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/vw_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/subText"
+        app:layout_constraintTop_toBottomOf="@id/cl_header_profile" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_profile_pict"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_marginTop="42dp"
-        android:src="@drawable/img_binar_logo"
+        android:layout_marginTop="32dp"
+        app:cardCornerRadius="180dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/vw_line">
 
-    <TextView
-        android:id="@+id/tv_name_app"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/inria_serif_bold"
-        android:text="@string/text_binar_resto"
-        android:textColor="@color/app_color_primary"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_app_logo" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/img_banner" />
+
+    </androidx.cardview.widget.CardView>
 
     <include
         android:id="@+id/layout_user_form"
         layout="@layout/layout_user_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_name_app"
+        app:layout_constraintTop_toBottomOf="@id/cv_profile_pict"
         app:layout_constraintVertical_bias="0.2" />
 
     <FrameLayout
         android:id="@+id/fl_btn_loading_state"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintTop_toBottomOf="@id/layout_user_form">
 
         <Button
-            android:id="@+id/btn_register"
+            android:id="@+id/btn_change_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_primary_container_transparent"
             android:fontFamily="@font/inter_font"
-            android:text="@string/text_register"
+            android:text="@string/text_change_profile"
             android:textFontWeight="700"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_user_form" />
-
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/pb_loading"
@@ -74,11 +100,11 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/tv_nav_to_login"
+        android:id="@+id/tv_change_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/text_already_have_an_account_login_here"
+        android:layout_marginTop="14dp"
+        android:text="@string/text_change_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fl_btn_loading_state" />
