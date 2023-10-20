@@ -18,7 +18,7 @@
         android:theme="@style/Theme.FoodAppBinarChallenge"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.feature.profile.editprofile.EditProfileActivity"
+            android:name=".presentation.feature.editprofile.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.feature.splashscreen.SplashScreenActivity"

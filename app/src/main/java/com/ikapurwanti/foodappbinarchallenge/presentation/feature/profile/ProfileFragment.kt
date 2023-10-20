@@ -2,12 +2,13 @@ package com.ikapurwanti.foodappbinarchallenge.presentation.feature.profile
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasource.FirebaseAuthDataSource
@@ -15,10 +16,10 @@ import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasour
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.FragmentProfileBinding
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.editprofile.EditProfileActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.login.LoginActivity
-import com.ikapurwanti.foodappbinarchallenge.presentation.feature.profile.editprofile.EditProfileActivity
-import com.ikapurwanti.foodappbinarchallenge.presentation.feature.profile.editprofile.EditProfileViewModel
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
+import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
 
 class ProfileFragment : Fragment() {
 

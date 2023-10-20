@@ -34,4 +34,25 @@
     <string name="text_order_successful">Pesanan Berhasil</string>
     <string name="text_menu_list_empty">Data Daftar Menu Kosong</string>
     <string name="text_cart_list_empty">Data Daftar Keranjang Kosong</string>
+    <string name="text_start_your_day_with_a_great_taste">" Mulailah Hari Anda dengan Cita Rasa yang Luar Biasa"</string>
+    <string name="text_register">Daftar</string>
+    <string name="text_already_have_an_account_login_here">" Sudah memiliki akun ? Masuk di sini"</string>
+    <string name="text_login">Masuk</string>
+    <string name="text_not_registered_yet_register_here">" Belum terdaftar ? Daftar di sini"</string>
+    <string name="text_full_name">Nama Lengkap</string>
+    <string name="text_confirm_password">Confirmasi Kata sandi</string>
+    <string name="text_login_here">Masuk Di sini</string>
+    <string name="text_register_here">Daftar Di sini</string>
+    <string name="text_error_name_cannot_empy">Nama tidak boleh kosong</string>
+    <string name="text_error_email_cannot_empy">Email tidak boleh kosong</string>
+    <string name="text_error_email_invalid">Masukkan email dengan format yang valid</string>
+    <string name="text_error_password_cannot_empy">Kata sandi tidak boleh kosong</string>
+    <string name="text_error_password_less_than_8_char">Kata sandi tidak boleh kurang dari 8 karakter</string>
+    <string name="text_error_password_does_not_match">Kata sandi tidak cocok</string>
+    <string name="text_change_profile">Ubah Profil</string>
+    <string name="text_change_password">Ubah kata sandi</string>
+    <string name="text_edit_profile">Edit Profil</string>
+    <string name="text_menu_not_found">Menu tidak ditemukan</string>
+    <string name="text_category_not_found">Kategori tidak ditemukan</string>
+    <string name="text_format_currency">Rp</string>
 </resources>

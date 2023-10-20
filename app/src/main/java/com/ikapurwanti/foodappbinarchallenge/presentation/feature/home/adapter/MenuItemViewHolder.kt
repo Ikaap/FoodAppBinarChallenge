@@ -6,6 +6,7 @@ import com.ikapurwanti.foodappbinarchallenge.core.ViewHolderBinder
 import com.ikapurwanti.foodappbinarchallenge.databinding.ItemGridMenuBinding
 import com.ikapurwanti.foodappbinarchallenge.databinding.ItemLinearMenuBinding
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
+import com.ikapurwanti.foodappbinarchallenge.utils.toCurrencyFormat
 
 class LinearMenuItemViewHolder(
     private val binding : ItemLinearMenuBinding,
@@ -15,7 +16,7 @@ class LinearMenuItemViewHolder(
         with(binding) {
             ivMenuImage.load(menu.imageUrl)
             tvMenuName.text = menu.name
-            tvMenuPrice.text = "IDR ${menu.price}"
+            tvMenuPrice.text = menu.price.toCurrencyFormat()
             tvMenuRating.text = menu.rating.toString()
         }
         binding.root.setOnClickListener{
@@ -32,7 +33,7 @@ class GridMenuItemViewHolder(
         with(binding) {
             ivMenuImage.load(menu.imageUrl)
             tvMenuName.text = menu.name
-            tvMenuPrice.text = "IDR ${menu.price}"
+            tvMenuPrice.text = menu.price.toCurrencyFormat()
             tvMenuRating.text = menu.rating.toString()
         }
         binding.root.setOnClickListener{

@@ -1,4 +1,4 @@
-package com.ikapurwanti.foodappbinarchallenge.presentation.feature.profile.editprofile
+package com.ikapurwanti.foodappbinarchallenge.presentation.feature.editprofile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

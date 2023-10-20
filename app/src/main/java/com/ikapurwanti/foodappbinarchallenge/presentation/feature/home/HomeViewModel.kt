@@ -40,7 +40,7 @@ class HomeViewModel(
 
     fun getMenu(category: String? = null){
         viewModelScope.launch(Dispatchers.IO) {
-            menuRepo.getMenu(if (category == "all") null else category?.lowercase()).collect{
+            menuRepo.getMenu(if (category == "All") null else category?.lowercase()).collect{
                 _menu.postValue(it)
             }
         }

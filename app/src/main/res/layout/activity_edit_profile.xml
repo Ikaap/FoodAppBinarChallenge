@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/screenBackground"
     android:padding="16dp"
-    tools:context=".presentation.feature.profile.editprofile.EditProfileActivity">
+    tools:context=".presentation.feature.editprofile.EditProfileActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_header_profile"

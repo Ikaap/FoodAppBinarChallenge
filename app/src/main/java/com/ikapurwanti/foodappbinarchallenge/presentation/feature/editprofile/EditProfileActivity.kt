@@ -1,11 +1,11 @@
-package com.ikapurwanti.foodappbinarchallenge.presentation.feature.profile.editprofile
+package com.ikapurwanti.foodappbinarchallenge.presentation.feature.editprofile
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.ikapurwanti.foodappbinarchallenge.R
@@ -14,10 +14,7 @@ import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasour
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityEditProfileBinding
-import com.ikapurwanti.foodappbinarchallenge.databinding.ActivitySplashScreenBinding
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.main.MainActivity
-import com.ikapurwanti.foodappbinarchallenge.presentation.feature.profile.ProfileFragment
-import com.ikapurwanti.foodappbinarchallenge.presentation.feature.splashscreen.SplashScreenViewModel
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
 
@@ -61,19 +58,19 @@ class EditProfileActivity : AppCompatActivity() {
     private fun setClickListeners() {
         binding.btnChangeProfile.setOnClickListener {
             changeProfileData()
+            navigateToMain()
             Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show()
-            navigateToProfile()
+
         }
         binding.tvChangePassword.setOnClickListener {
             requestChangePassword()
         }
     }
 
-    private fun navigateToProfile() {
+    private fun navigateToMain() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-
 
     private fun changeProfileData() {
         if (checkNameValidation()) {

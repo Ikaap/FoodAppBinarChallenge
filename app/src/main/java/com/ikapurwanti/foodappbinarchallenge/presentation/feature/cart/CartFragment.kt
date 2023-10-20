@@ -24,6 +24,7 @@ import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartLis
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.checkout.CheckoutActivity
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
+import com.ikapurwanti.foodappbinarchallenge.utils.toCurrencyFormat
 
 class CartFragment : Fragment() {
 
@@ -90,7 +91,7 @@ class CartFragment : Fragment() {
                     }
                     result.payload?.let { (carts, totalPrice) ->
                         adapter.setData(carts)
-                        binding.tvTotalPrice.text = "IDR $totalPrice"
+                        binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
                     }
                 },
                 doOnLoading = {
@@ -114,7 +115,7 @@ class CartFragment : Fragment() {
                     binding.layoutState.pbLoading.isVisible = false
                     binding.rvCartList.isVisible = false
                     it.payload?.let { (_, totalPrice) ->
-                        binding.tvTotalPrice.text = "IDR $totalPrice"
+                        binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
                     }
                 }
             )

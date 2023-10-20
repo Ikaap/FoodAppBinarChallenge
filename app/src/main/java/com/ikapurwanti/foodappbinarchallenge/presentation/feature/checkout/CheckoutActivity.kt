@@ -22,6 +22,7 @@ import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartLis
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.main.MainActivity
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
+import com.ikapurwanti.foodappbinarchallenge.utils.toCurrencyFormat
 
 class CheckoutActivity : AppCompatActivity() {
 
@@ -72,7 +73,7 @@ class CheckoutActivity : AppCompatActivity() {
                     }
                     it.payload?.let { (carts, totalPrice) ->
                         adapter.setData(carts)
-                        binding.tvTotalPrice.text = "IDR $totalPrice"
+                        binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
                     }
                 },
                 doOnLoading = {
@@ -95,7 +96,7 @@ class CheckoutActivity : AppCompatActivity() {
                     binding.layoutState.pbLoading.isVisible = false
                     binding.rvOrderList.isVisible = false
                     it.payload?.let { (_, totalPrice) ->
-                        binding.tvTotalPrice.text = "IDR $totalPrice"
+                        binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
                     }
                 }
 

@@ -20,6 +20,7 @@ import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityDetailMenuBindi
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
+import com.ikapurwanti.foodappbinarchallenge.utils.toCurrencyFormat
 
 class DetailMenuActivity : AppCompatActivity() {
 
@@ -52,14 +53,14 @@ class DetailMenuActivity : AppCompatActivity() {
         menu?.let { menu ->
             binding.menuImage.load(menu.imageUrl)
             binding.tvMenuName.text = menu.name
-            binding.tvMenuPrice.text = "IDR ${menu.price}"
+            binding.tvMenuPrice.text = menu.price.toCurrencyFormat()
             binding.tvMenuDesc.text = menu.desc
         }
     }
 
     private fun observeData() {
         viewModel.priceLiveData.observe(this) {
-            binding.tvMenuPriceCalculated.text = "IDR $it"
+            binding.tvMenuPriceCalculated.text = it.toCurrencyFormat()
         }
         viewModel.menuCountLiveData.observe(this) {
             binding.tvCalculateOrder.text = it.toString()
