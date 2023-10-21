@@ -12,3 +12,7 @@ Asset logo :
 - link address search : https://www.google.com/url?sa=i&url=https%3A%2F%2Fbusiness.binaracademy.com%2Fbinar-pro%2Fpricing&psig=AOvVaw3zS4d5imCfy6MOLUW3js2X&ust=1697997821343000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNi0vPrch4IDFQAAAAAdAAAAABAI
 - link posting : https://images.app.goo.gl/5pTTebVmLSZfZRjG8
 
+
+## Attachments
+- Screenshot Crashlytics
+![Crashlytics Sreenshot](screenshot/ss_crashlytics.png)
