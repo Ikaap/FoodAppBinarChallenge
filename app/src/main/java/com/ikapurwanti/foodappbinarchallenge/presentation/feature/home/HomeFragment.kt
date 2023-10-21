@@ -141,8 +141,6 @@ class HomeFragment : Fragment() {
                         layoutManager = GridLayoutManager(requireContext(),span)
                         adapter = adapterMenu
                     }
-
-//                    binding.rvMenuList.smoothScrollToPosition(0)
                     it.payload?.let { data ->
                         adapterMenu.setData(data)
                         binding.rvMenuList.smoothScrollToPosition(0)
