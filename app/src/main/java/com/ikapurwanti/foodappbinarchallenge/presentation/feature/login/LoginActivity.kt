@@ -1,11 +1,11 @@
 package com.ikapurwanti.foodappbinarchallenge.presentation.feature.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -15,10 +15,8 @@ import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasour
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityLoginBinding
-import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.HomeFragment
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.main.MainActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.register.RegisterActivity
-import com.ikapurwanti.foodappbinarchallenge.presentation.feature.register.RegisterViewModel
 import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import com.ikapurwanti.foodappbinarchallenge.utils.highLightWord
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
@@ -52,12 +50,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setClickListeners() {
-        binding.tvNavToRegister.highLightWord(getString(R.string.text_register_here)) {
-            navigateToRegister()
-        }
-
         binding.btnLogin.setOnClickListener {
             doLogin()
+        }
+
+        binding.tvNavToRegister.highLightWord(getString(R.string.text_not_registered_yet_register_here)) {
+            navigateToRegister()
         }
     }
 
