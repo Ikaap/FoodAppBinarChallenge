@@ -18,6 +18,7 @@ import com.ikapurwanti.foodappbinarchallenge.data.network.api.service.Restaurant
 import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.FragmentCartBinding
+import com.ikapurwanti.foodappbinarchallenge.di.AppInjection
 import com.ikapurwanti.foodappbinarchallenge.model.Cart
 import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartListAdapter
 import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartListener
@@ -31,14 +32,7 @@ class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
 
     private val viewModel: CartViewModel by viewModels {
-        val database = AppDatabase.getInstance(requireContext())
-        val cartDao = database.cartDao()
-        val cartDataSource = CartDatabaseDataSource(cartDao)
-        val chuckerInterceptor = ChuckerInterceptor(requireContext().applicationContext)
-        val service = RestaurantService.invoke(chuckerInterceptor)
-        val apiDataSource = RestaurantApiDataSource(service)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
-        GenericViewModelFactory.create(CartViewModel(repo))
+        AppInjection.getCartViewModel()
     }
 
     private val adapter: CartListAdapter by lazy {

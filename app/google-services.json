@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "256626144198",
+    "project_id": "foodappbinarchallenge",
+    "storage_bucket": "foodappbinarchallenge.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256626144198:android:6db1b84069747e0c8af8c7",
+        "android_client_info": {
+          "package_name": "com.ikapurwanti.foodappbinarchallenge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmblm-gIIcFSwVpnN29wkizzEmda2OddI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

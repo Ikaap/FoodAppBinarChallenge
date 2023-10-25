@@ -19,6 +19,7 @@ import com.ikapurwanti.foodappbinarchallenge.data.network.api.service.Restaurant
 import com.ikapurwanti.foodappbinarchallenge.data.repository.MenuRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.MenuRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.FragmentHomeBinding
+import com.ikapurwanti.foodappbinarchallenge.di.AppInjection
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.detailmenu.DetailMenuActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.adapter.AdapterLayoutMode
@@ -48,14 +49,7 @@ class HomeFragment : Fragment() {
     }
 
     private val viewModel: HomeViewModel by viewModels {
-        val chuckerInterceptor = ChuckerInterceptor(requireContext().applicationContext)
-        val service = RestaurantService.invoke(chuckerInterceptor)
-        val restaurantDataSource = RestaurantApiDataSource(service)
-        val repo: MenuRepository = MenuRepositoryImpl(restaurantDataSource)
-        val dataStore = this.requireContext().appDataStore
-        val dataStoreHelper = PreferenceDataStoreHelperImpl(dataStore)
-        val appPreferenceDataSource = AppPreferenceDataSourceImpl(dataStoreHelper)
-        GenericViewModelFactory.create(HomeViewModel(repo, appPreferenceDataSource))
+        AppInjection.getHomeViewModel()
     }
 
     override fun onCreateView(
