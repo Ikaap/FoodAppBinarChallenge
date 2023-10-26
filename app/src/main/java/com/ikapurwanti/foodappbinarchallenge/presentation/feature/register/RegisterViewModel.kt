@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
 import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(private val userRepo : UserRepository) : ViewModel() {

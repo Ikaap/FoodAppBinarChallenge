@@ -40,8 +40,7 @@
     <string name="text_not_registered_yet_register_here">" Belum terdaftar ? Daftar di sini"</string>
     <string name="text_full_name">Nama Lengkap</string>
     <string name="text_confirm_password">Confirmasi Kata sandi</string>
-    <string name="text_login_here">Masuk Di sini</string>
-    <string name="text_register_here">Daftar Di sini</string>
+    <string name="all">Semua</string>
     <string name="text_error_name_cannot_empy">Nama tidak boleh kosong</string>
     <string name="text_error_email_cannot_empy">Email tidak boleh kosong</string>
     <string name="text_error_email_invalid">Masukkan email dengan format yang valid</string>

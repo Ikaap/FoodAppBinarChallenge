@@ -8,30 +8,24 @@ import com.ikapurwanti.foodappbinarchallenge.data.local.database.dao.CartDao
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.entity.CartEntity
 
 @Database(
-    entities = [CartEntity::class,],
+    entities = [CartEntity::class],
     version = 2,
     exportSchema = true
 )
-abstract class AppDatabase : RoomDatabase(){
+abstract class AppDatabase : RoomDatabase() {
     abstract fun cartDao(): CartDao
 
-    companion object{
+    companion object {
         private const val DB_NAME = "FoodAppBinarChallenge.db"
 
         @Volatile
         private var INSTANCE: AppDatabase? = null
         fun getInstance(context: Context): AppDatabase {
-            return INSTANCE ?: synchronized(this){
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    DB_NAME
-                )
-                    .fallbackToDestructiveMigration()
-                    .build()
-                INSTANCE = instance
-                instance
-            }
+            return Room.databaseBuilder(
+                context.applicationContext,
+                AppDatabase::class.java,
+                DB_NAME
+            ).fallbackToDestructiveMigration().build()
         }
     }
 }

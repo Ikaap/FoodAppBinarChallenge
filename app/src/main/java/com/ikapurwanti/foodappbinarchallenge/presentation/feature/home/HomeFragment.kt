@@ -7,31 +7,24 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.ikapurwanti.foodappbinarchallenge.R
-import com.ikapurwanti.foodappbinarchallenge.data.local.datastore.AppPreferenceDataSourceImpl
-import com.ikapurwanti.foodappbinarchallenge.data.local.datastore.appDataStore
-import com.ikapurwanti.foodappbinarchallenge.data.network.api.datasource.RestaurantApiDataSource
-import com.ikapurwanti.foodappbinarchallenge.data.network.api.service.RestaurantService
-import com.ikapurwanti.foodappbinarchallenge.data.repository.MenuRepository
-import com.ikapurwanti.foodappbinarchallenge.data.repository.MenuRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.FragmentHomeBinding
-import com.ikapurwanti.foodappbinarchallenge.di.AppInjection
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.detailmenu.DetailMenuActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.adapter.AdapterLayoutMode
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.adapter.CategoriesListAdapter
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.adapter.MenuListAdapter
-import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
-import com.ikapurwanti.foodappbinarchallenge.utils.PreferenceDataStoreHelperImpl
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+
+    private val viewModel : HomeViewModel by viewModel()
+
     private val adapterMenu: MenuListAdapter by lazy {
         MenuListAdapter(AdapterLayoutMode.LINEAR) {
             navigateToDetailMenu(it)
@@ -46,10 +39,6 @@ class HomeFragment : Fragment() {
         CategoriesListAdapter{
             viewModel.getMenu(it.name)
         }
-    }
-
-    private val viewModel: HomeViewModel by viewModels {
-        AppInjection.getHomeViewModel()
     }
 
     override fun onCreateView(

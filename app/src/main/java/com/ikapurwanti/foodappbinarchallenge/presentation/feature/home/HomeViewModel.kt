@@ -5,10 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.ikapurwanti.foodappbinarchallenge.R
 import com.ikapurwanti.foodappbinarchallenge.data.local.datastore.AppPreferenceDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.repository.MenuRepository
 import com.ikapurwanti.foodappbinarchallenge.model.Category
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
+import com.ikapurwanti.foodappbinarchallenge.utils.AssetWrapper
 import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,6 +18,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private val menuRepo: MenuRepository,
     private val appPreferenceDataSource: AppPreferenceDataSource,
+    private val assetsWrapper: AssetWrapper
 ): ViewModel(){
 
     private val _categories = MutableLiveData<ResultWrapper<List<Category>>>()
@@ -40,7 +43,7 @@ class HomeViewModel(
 
     fun getMenu(category: String? = null){
         viewModelScope.launch(Dispatchers.IO) {
-            menuRepo.getMenu(if (category == "All") null else category?.lowercase()).collect{
+            menuRepo.getMenu(if (category == assetsWrapper.getString(R.string.all)) null else category?.lowercase()).collect{
                 _menu.postValue(it)
             }
         }

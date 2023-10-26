@@ -1,12 +1,11 @@
 package com.ikapurwanti.foodappbinarchallenge.presentation.feature.splashscreen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
-import com.ikapurwanti.foodappbinarchallenge.R
 import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasource.FirebaseAuthDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasource.FirebaseAuthDataSourceImpl
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository

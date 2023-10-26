@@ -18,7 +18,7 @@ import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import com.ikapurwanti.foodappbinarchallenge.utils.PreferenceDataStoreHelperImpl
 
 object AppInjection {
-
+/*
     // data store
     val dataStore = App.applicationContext().appDataStore
     val dataStoreHelper = PreferenceDataStoreHelperImpl(dataStore)
@@ -42,5 +42,7 @@ object AppInjection {
     fun getCartViewModel() = GenericViewModelFactory.create(
         CartViewModel(cartRepo)
     )
+
+ */
 
 }

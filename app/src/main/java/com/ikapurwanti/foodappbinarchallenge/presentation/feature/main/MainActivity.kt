@@ -1,7 +1,7 @@
 package com.ikapurwanti.foodappbinarchallenge.presentation.feature.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ikapurwanti.foodappbinarchallenge.R
