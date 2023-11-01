@@ -11,7 +11,6 @@ import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
 import com.ikapurwanti.foodappbinarchallenge.model.Category
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 import com.ikapurwanti.foodappbinarchallenge.model.UserViewParam
-import com.ikapurwanti.foodappbinarchallenge.utils.AssetWrapper
 import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,7 +18,6 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private val menuRepo: MenuRepository,
     private val appPreferenceDataSource: AppPreferenceDataSource,
-    private val assetsWrapper: AssetWrapper,
     private val userRepo: UserRepository
 ) : ViewModel() {
 
