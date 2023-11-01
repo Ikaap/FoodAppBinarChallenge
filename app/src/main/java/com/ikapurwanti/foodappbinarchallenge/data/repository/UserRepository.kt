@@ -2,8 +2,8 @@ package com.ikapurwanti.foodappbinarchallenge.data.repository
 
 import android.net.Uri
 import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasource.FirebaseAuthDataSource
-import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.model.User
-import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.model.toUser
+import com.ikapurwanti.foodappbinarchallenge.model.UserViewParam
+import com.ikapurwanti.foodappbinarchallenge.model.toUserViewParam
 import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedFlow
 import kotlinx.coroutines.flow.Flow
@@ -17,7 +17,7 @@ interface UserRepository {
 
     fun isLoggedIn(): Boolean
 
-    fun getCurrentUser() : User?
+    fun getCurrentUser() : UserViewParam?
 
     suspend fun updateProfile(fullName: String? = null, photoUri: Uri? = null): Flow<ResultWrapper<Boolean>>
 
@@ -48,8 +48,8 @@ class UserRepositoryImpl(private val firebaseAuthDataSource: FirebaseAuthDataSou
         return firebaseAuthDataSource.isLoggedIn()
     }
 
-    override fun getCurrentUser(): User? {
-        return firebaseAuthDataSource.getCurrentUser().toUser()
+    override fun getCurrentUser(): UserViewParam? {
+        return firebaseAuthDataSource.getCurrentUser().toUserViewParam()
     }
 
     override suspend fun updateProfile(

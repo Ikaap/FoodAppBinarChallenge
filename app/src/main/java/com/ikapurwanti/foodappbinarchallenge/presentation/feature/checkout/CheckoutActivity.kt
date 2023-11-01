@@ -4,25 +4,19 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.ikapurwanti.foodappbinarchallenge.R
-import com.ikapurwanti.foodappbinarchallenge.data.local.database.AppDatabase
-import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.CartDatabaseDataSource
-import com.ikapurwanti.foodappbinarchallenge.data.network.api.datasource.RestaurantApiDataSource
-import com.ikapurwanti.foodappbinarchallenge.data.network.api.service.RestaurantService
-import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepository
-import com.ikapurwanti.foodappbinarchallenge.data.repository.CartRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityCheckoutBinding
 import com.ikapurwanti.foodappbinarchallenge.databinding.LayoutDialogCheckoutSuccessBinding
 import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartListAdapter
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.main.MainActivity
-import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
+import com.ikapurwanti.foodappbinarchallenge.utils.AssetWrapper
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
 import com.ikapurwanti.foodappbinarchallenge.utils.toCurrencyFormat
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CheckoutActivity : AppCompatActivity() {
 
@@ -30,16 +24,9 @@ class CheckoutActivity : AppCompatActivity() {
         ActivityCheckoutBinding.inflate(layoutInflater)
     }
 
-    private val viewModel: CheckoutViewModel by viewModels {
-        val database = AppDatabase.getInstance(this)
-        val cartDao = database.cartDao()
-        val cartDataSource = CartDatabaseDataSource(cartDao)
-        val chuckerInterceptor = ChuckerInterceptor(this.applicationContext)
-        val service = RestaurantService.invoke(chuckerInterceptor)
-        val apiDataSource = RestaurantApiDataSource(service)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
-        GenericViewModelFactory.create(CheckoutViewModel(repo))
-    }
+    private val viewModel: CheckoutViewModel by viewModel()
+
+    private val assetWrapper: AssetWrapper by inject()
 
     private val adapter: CartListAdapter by lazy {
         CartListAdapter()
@@ -92,7 +79,7 @@ class CheckoutActivity : AppCompatActivity() {
                 doOnEmpty = {
                     binding.layoutState.root.isVisible = true
                     binding.layoutState.tvError.isVisible = true
-                    binding.layoutState.tvError.text = getString(R.string.text_cart_list_empty)
+                    binding.layoutState.tvError.text = assetWrapper.getString(R.string.text_cart_list_empty)
                     binding.layoutState.pbLoading.isVisible = false
                     binding.rvOrderList.isVisible = false
                     it.payload?.let { (_, totalPrice) ->
@@ -114,7 +101,7 @@ class CheckoutActivity : AppCompatActivity() {
                 doOnError = {
                     binding.layoutState.root.isVisible = false
                     binding.layoutState.pbLoading.isVisible = false
-                    Toast.makeText(this, "Checkout Error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, assetWrapper.getString(R.string.text_checkout_error), Toast.LENGTH_SHORT).show()
                 },
                 doOnLoading = {
                     binding.layoutState.root.isVisible = true

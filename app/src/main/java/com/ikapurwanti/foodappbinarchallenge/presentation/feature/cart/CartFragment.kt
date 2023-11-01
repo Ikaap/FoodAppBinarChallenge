@@ -14,8 +14,10 @@ import com.ikapurwanti.foodappbinarchallenge.model.Cart
 import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartListAdapter
 import com.ikapurwanti.foodappbinarchallenge.presentation.common.adapter.CartListener
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.checkout.CheckoutActivity
+import com.ikapurwanti.foodappbinarchallenge.utils.AssetWrapper
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
 import com.ikapurwanti.foodappbinarchallenge.utils.toCurrencyFormat
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CartFragment : Fragment() {
@@ -23,6 +25,8 @@ class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
 
     private val viewModel : CartViewModel by viewModel()
+
+    private val assetWrapper: AssetWrapper by inject()
 
     private val adapter: CartListAdapter by lazy {
         CartListAdapter(object : CartListener {
@@ -94,7 +98,7 @@ class CartFragment : Fragment() {
                     binding.btnCheckout.isEnabled = false
                     binding.layoutState.root.isVisible = true
                     binding.layoutState.tvError.isVisible = true
-                    binding.layoutState.tvError.text = getString(R.string.text_cart_list_empty)
+                    binding.layoutState.tvError.text = assetWrapper.getString(R.string.text_cart_list_empty)
                     binding.layoutState.pbLoading.isVisible = false
                     binding.rvCartList.isVisible = false
                     it.payload?.let { (_, totalPrice) ->

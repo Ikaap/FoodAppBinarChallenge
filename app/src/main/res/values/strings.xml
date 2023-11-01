@@ -35,7 +35,7 @@
     <string name="text_contact_info">Contact Info</string>
     <string name="text_password_data" translatable="false">********</string>
 
-    <string name="text_header_hello">Hi Binarian!</string>
+    <string name="text_header_hello">Hi</string>
     <string name="text_header_greeting">It\'s lunch time</string>
     <string name="text_banner_desc">Get Special Discount</string>
     <string name="text_banner_discount">up to 50%</string>
@@ -55,10 +55,10 @@
     <string name="text_start_your_day_with_a_great_taste" translatable="false">Start Your Day with a Great Taste</string>
 
     <string name="text_register">Register</string>
-    <string name="text_already_have_an_account_login_here">Already have an Account ? Login Here</string>
+    <string name="text_already_have_an_account">Already have an Account ?</string>
 
     <string name="text_login">Login</string>
-    <string name="text_not_registered_yet_register_here">Not Registered yet ? Register Here</string>
+    <string name="text_not_registered_yet">Not Registered yet ?</string>
     <string name="text_full_name">Full Name</string>
     <string name="text_confirm_password">Confirm Password</string>
     <string name="text_binar_resto" translatable="false">Binar Resto</string>
@@ -76,7 +76,21 @@
     <string name="text_menu_not_found">Menu not found</string>
     <string name="text_category_not_found">Categories not found</string>
 
+    <string name="text_highlight_login_here">Login Here</string>
+    <string name="text_highlight_register">Register Here</string>
+
     <string name="text_format_currency">IDR</string>
-    <string name="all">All</string>
+    <string name="All">All</string>
+    <string name="text_checkout_error" translatable="false">Checkout Error</string>
+    <string name="text_add_cart_success">Add to cart success !</string>
+    <string name="text_profile_update_success">Profile updated successfully</string>
+    <string name="text_okay" translatable="false">Okay</string>
+    <string name="text_change_pass_email">Change password request sent to your email</string>
+    <string name="text_change_profile_failed">Change Profile Failed</string>
+    <string name="text_login_failed">Login Failed</string>
+    <string name="text_logout_dialog">Do you want to logout ?</string>
+    <string name="text_yes">Yes</string>
+    <string name="text_no">No</string>
+    <string name="text_register_failed">Register Failed</string>
 
 </resources>

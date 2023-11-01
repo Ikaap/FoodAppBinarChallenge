@@ -2,9 +2,6 @@ package com.ikapurwanti.foodappbinarchallenge.di
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.AppDatabase
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.CartDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.datasource.CartDatabaseDataSource
@@ -23,11 +20,19 @@ import com.ikapurwanti.foodappbinarchallenge.data.repository.MenuRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.cart.CartViewModel
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.checkout.CheckoutViewModel
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.detailmenu.DetailMenuViewModel
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.editprofile.EditProfileViewModel
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.HomeViewModel
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.login.LoginViewModel
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.profile.ProfileViewModel
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.register.RegisterViewModel
+import com.ikapurwanti.foodappbinarchallenge.presentation.feature.splashscreen.SplashScreenViewModel
 import com.ikapurwanti.foodappbinarchallenge.utils.AssetWrapper
 import com.ikapurwanti.foodappbinarchallenge.utils.PreferenceDataStoreHelper
 import com.ikapurwanti.foodappbinarchallenge.utils.PreferenceDataStoreHelperImpl
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -62,6 +67,13 @@ object AppModules {
     private val viewModelModule = module {
         viewModelOf(::HomeViewModel)
         viewModelOf(::CartViewModel)
+        viewModelOf(::CheckoutViewModel)
+        viewModel { param -> DetailMenuViewModel(param.get(), get()) }
+        viewModelOf(::EditProfileViewModel)
+        viewModelOf(::LoginViewModel)
+        viewModelOf(::ProfileViewModel)
+        viewModelOf(::RegisterViewModel)
+        viewModelOf(::SplashScreenViewModel)
     }
 
     private val utilsModule = module {

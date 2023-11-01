@@ -21,7 +21,7 @@
     <string name="text_personal_info">Informasi Pribadi</string>
     <string name="text_contact_info">Informasi Kontak</string>
     <string name="text_logout">Keluar</string>
-    <string name="text_header_hello">Hai Binarian!</string>
+    <string name="text_header_hello">Hai</string>
     <string name="text_header_greeting">Waktunya makan siang</string>
     <string name="text_banner_desc">Dapatkan Diskon Spesial</string>
     <string name="text_banner_discount">sampai 50%</string>
@@ -35,12 +35,11 @@
     <string name="text_menu_list_empty">Data Daftar Menu Kosong</string>
     <string name="text_cart_list_empty">Data Daftar Keranjang Kosong</string>
     <string name="text_register">Daftar</string>
-    <string name="text_already_have_an_account_login_here">" Sudah memiliki akun ? Masuk di sini"</string>
+    <string name="text_already_have_an_account">" Sudah memiliki akun ?"</string>
     <string name="text_login">Masuk</string>
-    <string name="text_not_registered_yet_register_here">" Belum terdaftar ? Daftar di sini"</string>
+    <string name="text_not_registered_yet">" Belum terdaftar ?"</string>
     <string name="text_full_name">Nama Lengkap</string>
     <string name="text_confirm_password">Confirmasi Kata sandi</string>
-    <string name="all">Semua</string>
     <string name="text_error_name_cannot_empy">Nama tidak boleh kosong</string>
     <string name="text_error_email_cannot_empy">Email tidak boleh kosong</string>
     <string name="text_error_email_invalid">Masukkan email dengan format yang valid</string>
@@ -52,5 +51,17 @@
     <string name="text_edit_profile">Edit Profil</string>
     <string name="text_menu_not_found">Menu tidak ditemukan</string>
     <string name="text_category_not_found">Kategori tidak ditemukan</string>
+    <string name="text_highlight_login_here">Masuk Disini</string>
+    <string name="text_highlight_register">Daftar Disini</string>
     <string name="text_format_currency">Rp</string>
+    <string name="All">Semua</string>
+    <string name="text_add_cart_success">Tambah ke keranjang sukses !</string>
+    <string name="text_profile_update_success">Profil berhasil diperbarui</string>
+    <string name="text_change_pass_email">Permintaan perubahan kata sandi dikirim ke email Anda</string>
+    <string name="text_change_profile_failed">Ubah Profil Gagal</string>
+    <string name="text_login_failed">Masuk Gagal</string>
+    <string name="text_logout_dialog">Apakah Anda ingin logout?</string>
+    <string name="text_yes">Iya</string>
+    <string name="text_no">Tidak</string>
+    <string name="text_register_failed">Daftar Gagal</string>
 </resources>

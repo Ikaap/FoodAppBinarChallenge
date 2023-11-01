@@ -16,7 +16,9 @@ import com.ikapurwanti.foodappbinarchallenge.presentation.feature.detailmenu.Det
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.adapter.AdapterLayoutMode
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.adapter.CategoriesListAdapter
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.home.adapter.MenuListAdapter
+import com.ikapurwanti.foodappbinarchallenge.utils.AssetWrapper
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -24,6 +26,8 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private val viewModel : HomeViewModel by viewModel()
+
+    private val assetWrapper: AssetWrapper by inject()
 
     private val adapterMenu: MenuListAdapter by lazy {
         MenuListAdapter(AdapterLayoutMode.LINEAR) {
@@ -60,6 +64,23 @@ class HomeFragment : Fragment() {
         setupSwitchLayout()
     }
 
+    override fun onResume() {
+        super.onResume()
+        getProfileData()
+    }
+
+    private fun getProfileData() {
+        viewModel.getProfileData()
+        observeDataProfile()
+    }
+
+    private fun observeDataProfile() {
+        viewModel.getProfileResult.observe(viewLifecycleOwner) {
+            binding.tvName.text = viewModel.getCurrentUser()?.fullName
+            viewModel.getProfileData()
+        }
+    }
+
     private fun rvListMenu() {
         val span = if (adapterMenu.adapterLayoutMode == AdapterLayoutMode.LINEAR) 1 else 2
         binding.rvMenuList.apply {
@@ -68,7 +89,9 @@ class HomeFragment : Fragment() {
             adapterMenu.refreshList()
         }
     }
+
     private fun getData() {
+        binding.tvName.text = viewModel.getCurrentUser()?.fullName
         viewModel.getCategories()
         viewModel.getMenu()
     }
@@ -107,7 +130,7 @@ class HomeFragment : Fragment() {
                     binding.layoutStateCategory.root.isVisible = true
                     binding.layoutStateCategory.pbLoading.isVisible = false
                     binding.layoutStateCategory.tvError.isVisible = true
-                    binding.layoutStateCategory.tvError.text = getString(R.string.text_category_not_found)
+                    binding.layoutStateCategory.tvError.text = assetWrapper.getString(R.string.text_category_not_found)
                 }
             )
         }
@@ -147,7 +170,7 @@ class HomeFragment : Fragment() {
                     binding.layoutStateMenu.root.isVisible = true
                     binding.layoutStateMenu.pbLoading.isVisible = false
                     binding.layoutStateMenu.tvError.isVisible = true
-                    binding.layoutStateMenu.tvError.text = getString(R.string.text_menu_not_found)
+                    binding.layoutStateMenu.tvError.text = assetWrapper.getString(R.string.text_menu_not_found)
                 }
             )
         }

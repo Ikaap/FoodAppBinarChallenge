@@ -1,8 +1,5 @@
 package com.ikapurwanti.foodappbinarchallenge.model
 
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
-
 data class Cart(
     var id: Int? = null,
     var menuId: Int? = null,
