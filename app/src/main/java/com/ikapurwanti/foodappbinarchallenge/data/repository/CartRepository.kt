@@ -46,10 +46,11 @@ class CartRepositoryImpl(
                     Pair(result, totalPrice)
                 }
             }.map {
-                if (it.payload?.first?.isEmpty() == true)
+                if (it.payload?.first?.isEmpty() == true) {
                     ResultWrapper.Empty(it.payload)
-                else
+                } else {
                     it
+                }
             }.onStart {
                 emit(ResultWrapper.Loading())
                 delay(2000)
@@ -57,14 +58,14 @@ class CartRepositoryImpl(
     }
 
     override suspend fun createCart(menu: Menu, totalQty: Int): Flow<ResultWrapper<Boolean>> {
-        return menu.id?.let{ menuId ->
+        return menu.id?.let { menuId ->
             proceedFlow {
                 val affectedRow = cartDataSource.insertCart(
                     CartEntity(
                         menuId = menuId,
                         itemQuantity = totalQty,
                         menuImgUrl = menu.imageUrl,
-                        menuPrice =  menu.price,
+                        menuPrice = menu.price,
                         menuName = menu.name
                     )
                 )
@@ -114,5 +115,4 @@ class CartRepositoryImpl(
             restaurantDataSource.createOrder(orderRequest).status == true
         }
     }
-
 }

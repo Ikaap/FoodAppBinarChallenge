@@ -1,6 +1,5 @@
 package com.ikapurwanti.foodappbinarchallenge.data.network.api.model.category
 
-
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.ikapurwanti.foodappbinarchallenge.R
 import com.ikapurwanti.foodappbinarchallenge.data.local.datastore.AppPreferenceDataSource
 import com.ikapurwanti.foodappbinarchallenge.data.repository.MenuRepository
 import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
@@ -22,12 +21,11 @@ class HomeViewModel(
     private val appPreferenceDataSource: AppPreferenceDataSource,
     private val assetsWrapper: AssetWrapper,
     private val userRepo: UserRepository
-): ViewModel(){
+) : ViewModel() {
 
     private val _categories = MutableLiveData<ResultWrapper<List<Category>>>()
     val categories: LiveData<ResultWrapper<List<Category>>>
         get() = _categories
-
 
     private val _menu = MutableLiveData<ResultWrapper<List<Menu>>>()
     val menu: LiveData<ResultWrapper<List<Menu>>>
@@ -39,29 +37,29 @@ class HomeViewModel(
     val getProfileResult: LiveData<UserViewParam?>
         get() = _getProfileResult
 
-    fun getProfileData(){
+    fun getProfileData() {
         val data = userRepo.getCurrentUser()
         _getProfileResult.postValue(data)
     }
 
     fun getCurrentUser() = userRepo.getCurrentUser()
-    fun getCategories(){
+    fun getCategories() {
         viewModelScope.launch(Dispatchers.IO) {
-            menuRepo.getCategories().collect{
+            menuRepo.getCategories().collect {
                 _categories.postValue(it)
             }
         }
     }
 
-    fun getMenu(category: String? = null){
+    fun getMenu(category: String? = null) {
         viewModelScope.launch(Dispatchers.IO) {
-            menuRepo.getMenu(if (category == assetsWrapper.getString(R.string.All)) null else category?.lowercase()).collect{
+            menuRepo.getMenu(if (category == "All") null else category?.lowercase()).collect {
                 _menu.postValue(it)
             }
         }
     }
 
-    fun setAppLayoutPref(isGridLayout: Boolean){
+    fun setAppLayoutPref(isGridLayout: Boolean) {
         viewModelScope.launch {
             appPreferenceDataSource.setAppLayoutPref(isGridLayout)
         }

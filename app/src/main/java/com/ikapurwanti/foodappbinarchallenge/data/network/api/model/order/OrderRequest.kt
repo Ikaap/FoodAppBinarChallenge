@@ -1,11 +1,10 @@
 package com.ikapurwanti.foodappbinarchallenge.data.network.api.model.order
 
-
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 @Keep
 data class OrderRequest(
     @SerializedName("orders")
-    val orders: List<OrderItemRequest>?,
+    val orders: List<OrderItemRequest>?
 )

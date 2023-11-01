@@ -16,17 +16,18 @@ class MenuListAdapter(
     private val onClickListener: (Menu) -> Unit
 ) : RecyclerView.Adapter<ViewHolder>() {
 
-    private val dataDiffer = AsyncListDiffer(this, object : DiffUtil.ItemCallback<Menu>(){
-        override fun areItemsTheSame(oldItem: Menu, newItem: Menu): Boolean {
-            return oldItem.id == newItem.id
+    private val dataDiffer = AsyncListDiffer(
+        this,
+        object : DiffUtil.ItemCallback<Menu>() {
+            override fun areItemsTheSame(oldItem: Menu, newItem: Menu): Boolean {
+                return oldItem.id == newItem.id
+            }
 
+            override fun areContentsTheSame(oldItem: Menu, newItem: Menu): Boolean {
+                return oldItem.hashCode() == newItem.hashCode()
+            }
         }
-
-        override fun areContentsTheSame(oldItem: Menu, newItem: Menu): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
-        }
-
-    })
+    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
@@ -36,14 +37,18 @@ class MenuListAdapter(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    ), onClickListener
+                    ),
+                    onClickListener
                 )
             }
             else -> {
                 LinearMenuItemViewHolder(
                     binding = ItemLinearMenuBinding.inflate(
-                        LayoutInflater.from(parent.context),parent,false
-                    ), onClickListener
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ),
+                    onClickListener
                 )
             }
         }
@@ -55,18 +60,15 @@ class MenuListAdapter(
 
     override fun getItemCount(): Int = dataDiffer.currentList.size
 
-
     override fun getItemViewType(position: Int): Int {
         return adapterLayoutMode.ordinal
     }
 
-    fun setData(data:List<Menu>){
+    fun setData(data: List<Menu>) {
         dataDiffer.submitList(data)
     }
 
     fun refreshList() {
-        notifyItemRangeChanged(0,dataDiffer.currentList.size)
+        notifyItemRangeChanged(0, dataDiffer.currentList.size)
     }
-
-
 }

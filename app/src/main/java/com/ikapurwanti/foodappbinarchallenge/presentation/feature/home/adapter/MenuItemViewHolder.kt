@@ -9,35 +9,35 @@ import com.ikapurwanti.foodappbinarchallenge.model.Menu
 import com.ikapurwanti.foodappbinarchallenge.utils.toCurrencyFormat
 
 class LinearMenuItemViewHolder(
-    private val binding : ItemLinearMenuBinding,
-    private val onClickListener : (Menu) -> Unit
+    private val binding: ItemLinearMenuBinding,
+    private val onClickListener: (Menu) -> Unit
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Menu> {
-    override fun bind(menu: Menu) {
+    override fun bind(item: Menu) {
         with(binding) {
-            ivMenuImage.load(menu.imageUrl)
-            tvMenuName.text = menu.name
-            tvMenuPrice.text = menu.price.toCurrencyFormat()
-            tvMenuRating.text = menu.rating.toString()
+            ivMenuImage.load(item.imageUrl)
+            tvMenuName.text = item.name
+            tvMenuPrice.text = item.price.toCurrencyFormat()
+            tvMenuRating.text = item.rating.toString()
         }
-        binding.root.setOnClickListener{
-            onClickListener(menu)
+        binding.root.setOnClickListener {
+            onClickListener(item)
         }
     }
 }
 
 class GridMenuItemViewHolder(
-    private val binding : ItemGridMenuBinding,
-    private val onClickListener : (Menu) -> Unit
+    private val binding: ItemGridMenuBinding,
+    private val onClickListener: (Menu) -> Unit
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Menu> {
-    override fun bind(menu: Menu) {
+    override fun bind(item: Menu) {
         with(binding) {
-            ivMenuImage.load(menu.imageUrl)
-            tvMenuName.text = menu.name
-            tvMenuPrice.text = menu.price.toCurrencyFormat()
-            tvMenuRating.text = menu.rating.toString()
+            ivMenuImage.load(item.imageUrl)
+            tvMenuName.text = item.name
+            tvMenuPrice.text = item.price.toCurrencyFormat()
+            tvMenuRating.text = item.rating.toString()
         }
-        binding.root.setOnClickListener{
-            onClickListener(menu)
+        binding.root.setOnClickListener {
+            onClickListener(item)
         }
     }
 }

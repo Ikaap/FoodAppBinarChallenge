@@ -24,7 +24,8 @@ class ProfileFragment : Fragment() {
     private val assetWrapper: AssetWrapper by inject()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -78,7 +79,6 @@ class ProfileFragment : Fragment() {
                 viewModel.doLogout()
                 navigateToLogin()
             }.setNegativeButton(assetWrapper.getString(R.string.text_no)) { _, _ ->
-
             }.create().show()
     }
 
@@ -93,5 +93,4 @@ class ProfileFragment : Fragment() {
         binding.tvPersonalName.text = viewModel.getCurrentUser()?.fullName.toString()
         binding.tvPersonalEmail.text = viewModel.getCurrentUser()?.email.toString()
     }
-
 }

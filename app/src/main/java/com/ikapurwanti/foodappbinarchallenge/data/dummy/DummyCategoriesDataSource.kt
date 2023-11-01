@@ -2,7 +2,6 @@ package com.ikapurwanti.foodappbinarchallenge.data.dummy
 
 import com.ikapurwanti.foodappbinarchallenge.model.Category
 
-
 interface DummyCategoriesDataSource {
     fun getCategories(): List<Category>
 }
@@ -29,9 +28,7 @@ class DummyCategoriesDataSourceImpl() : DummyCategoriesDataSource {
             Category(
                 "https://imgcdn.solopos.com/@space/2022/09/es-teh-res.jpg",
                 "Minuman"
-            ),
+            )
         )
     }
-
-
 }

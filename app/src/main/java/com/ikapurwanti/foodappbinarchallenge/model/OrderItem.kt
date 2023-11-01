@@ -1,6 +1,5 @@
 package com.ikapurwanti.foodappbinarchallenge.model
 
-import com.google.gson.annotations.SerializedName
 import com.ikapurwanti.foodappbinarchallenge.data.network.api.model.order.OrderItemRequest
 
 data class OrderItem(
@@ -11,5 +10,8 @@ data class OrderItem(
 )
 
 fun OrderItem.toOrderItemRequest() = OrderItemRequest(
-    notes, price, name, qty
+    notes,
+    price,
+    name,
+    qty
 )

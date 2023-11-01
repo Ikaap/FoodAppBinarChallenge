@@ -19,25 +19,37 @@ class CartListAdapter(
     private val cartListener: CartListener? = null
 ) : RecyclerView.Adapter<ViewHolder>() {
 
-    private val dataDiffer = AsyncListDiffer(this, object : DiffUtil.ItemCallback<Cart>(){
-        override fun areItemsTheSame(oldItem: Cart, newItem: Cart): Boolean {
-            return oldItem.id == newItem.id
+    private val dataDiffer = AsyncListDiffer(
+        this,
+        object : DiffUtil.ItemCallback<Cart>() {
+            override fun areItemsTheSame(oldItem: Cart, newItem: Cart): Boolean {
+                return oldItem.id == newItem.id
+            }
+            override fun areContentsTheSame(oldItem: Cart, newItem: Cart): Boolean {
+                return oldItem.hashCode() == newItem.hashCode()
+            }
         }
-        override fun areContentsTheSame(oldItem: Cart, newItem: Cart): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
-        }
-    })
+    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return if (cartListener != null) CartViewHolder(
-            ItemListCartBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            ), cartListener
-        ) else CartCheckoutViewHolder(
-            ItemCheckoutListBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
+        return if (cartListener != null) {
+            CartViewHolder(
+                ItemListCartBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                ),
+                cartListener
             )
-        )
+        } else {
+            CartCheckoutViewHolder(
+                ItemCheckoutListBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+        }
     }
 
     override fun getItemCount(): Int = dataDiffer.currentList.size
@@ -49,13 +61,12 @@ class CartListAdapter(
     fun setData(data: List<Cart>) {
         dataDiffer.submitList(data)
     }
-
 }
 
 class CartViewHolder(
-    private val binding : ItemListCartBinding,
+    private val binding: ItemListCartBinding,
     private val cartListener: CartListener?
-) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart>{
+) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart> {
     override fun bind(item: Cart) {
         setCartData(item)
         setCartNotes(item)
@@ -63,20 +74,19 @@ class CartViewHolder(
     }
 
     private fun setCartData(item: Cart) {
-        with(binding){
-            ivMenuImage.load(item.menuImgUrl){
+        with(binding) {
+            ivMenuImage.load(item.menuImgUrl) {
                 crossfade(true)
             }
             tvMenuName.text = item.menuName
             tvMenuPrice.text = (item.itemQuantity * item.menuPrice).toCurrencyFormat()
             tvCalculateOrder.text = item.itemQuantity.toString()
-
         }
     }
 
     private fun setCartNotes(item: Cart) {
         binding.etNoteMenu.setText(item.itemNotes)
-        binding.etNoteMenu.doneEditing{
+        binding.etNoteMenu.doneEditing {
             binding.etNoteMenu.clearFocus()
             val newItem = item.copy().apply {
                 itemNotes = binding.etNoteMenu.text.toString().trim()
@@ -86,26 +96,25 @@ class CartViewHolder(
     }
 
     private fun setClickListeners(item: Cart) {
-        with(binding){
-            tvMinOrder.setOnClickListener {cartListener?.onMinusTotalItemCartClicked(item)}
-            tvPlusOrder.setOnClickListener {cartListener?.onPlusTotalItemCartClicked(item)}
-            ivDelete.setOnClickListener {cartListener?.onRemoveCartClicked(item)}
+        with(binding) {
+            tvMinOrder.setOnClickListener { cartListener?.onMinusTotalItemCartClicked(item) }
+            tvPlusOrder.setOnClickListener { cartListener?.onPlusTotalItemCartClicked(item) }
+            ivDelete.setOnClickListener { cartListener?.onRemoveCartClicked(item) }
         }
     }
-
 }
 
 class CartCheckoutViewHolder(
-    private val binding: ItemCheckoutListBinding,
-) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart>{
+    private val binding: ItemCheckoutListBinding
+) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart> {
     override fun bind(item: Cart) {
         setCartData(item)
         setCartNotes(item)
     }
 
     private fun setCartData(item: Cart) {
-        with(binding){
-            ivMenuImage.load(item.menuImgUrl){
+        with(binding) {
+            ivMenuImage.load(item.menuImgUrl) {
                 crossfade(true)
             }
             tvMenuName.text = item.menuName
@@ -118,13 +127,12 @@ class CartCheckoutViewHolder(
         }
     }
 
-    private fun setCartNotes(item: Cart){
+    private fun setCartNotes(item: Cart) {
         binding.tvNoteMenu.text = item.itemNotes
     }
-
 }
 
-interface CartListener{
+interface CartListener {
     fun onPlusTotalItemCartClicked(cart: Cart)
     fun onMinusTotalItemCartClicked(cart: Cart)
     fun onRemoveCartClicked(cart: Cart)

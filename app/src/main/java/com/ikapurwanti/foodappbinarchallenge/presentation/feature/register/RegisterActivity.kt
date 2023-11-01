@@ -109,13 +109,13 @@ class RegisterActivity : AppCompatActivity() {
         val password = binding.layoutUserForm.etPassword.text.toString().trim()
         val confirmPassword = binding.layoutUserForm.etConfirmPassword.text.toString().trim()
 
-        return checkNameValidation(name) && checkEmailValidation(email)
-                && checkPasswordValidation(password, binding.layoutUserForm.tilPassword)
-                && checkPasswordValidation(
-            confirmPassword,
-            binding.layoutUserForm.tilConfirmPassword
-        )
-                && checkPasswordAndConfirmPassword(password, confirmPassword)
+        return checkNameValidation(name) && checkEmailValidation(email) &&
+            checkPasswordValidation(password, binding.layoutUserForm.tilPassword) &&
+            checkPasswordValidation(
+                confirmPassword,
+                binding.layoutUserForm.tilConfirmPassword
+            ) &&
+            checkPasswordAndConfirmPassword(password, confirmPassword)
     }
 
     private fun checkNameValidation(name: String): Boolean {
@@ -180,6 +180,4 @@ class RegisterActivity : AppCompatActivity() {
             true
         }
     }
-
-
 }

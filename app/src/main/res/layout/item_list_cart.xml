@@ -10,8 +10,8 @@
         android:id="@+id/cv_menu_image"
         android:layout_width="150dp"
         android:layout_height="0dp"
-        app:cardCornerRadius="16dp"
         android:layout_margin="8dp"
+        app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -59,21 +59,22 @@
         android:id="@+id/et_note_menu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:maxLines="5"
         android:layout_marginStart="20dp"
-        android:hint="@string/text_notes"
+        android:layout_marginTop="8dp"
         android:background="@null"
         android:fontFamily="@font/inter_font"
         android:gravity="top"
+        android:hint="@string/text_notes"
         android:imeOptions="actionDone"
         android:inputType="text"
+        android:maxLines="5"
         android:textColor="@color/subText"
         android:textFontWeight="400"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cv_menu_image"
-        app:layout_constraintTop_toBottomOf="@id/tv_menu_price" />
+        app:layout_constraintTop_toBottomOf="@id/tv_menu_price"
+        tools:ignore="TouchTargetSizeCheck" />
 
 
     <ImageView
@@ -83,7 +84,7 @@
         android:src="@drawable/ic_delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_note_menu"/>
+        app:layout_constraintTop_toBottomOf="@id/et_note_menu" />
 
     <LinearLayout
         android:id="@+id/ll_action_calculate"
@@ -102,7 +103,7 @@
             android:layout_height="24dp"
             android:background="@drawable/bg_button_primary_transparent"
             android:gravity="center"
-            android:text="-"
+            android:text="@string/text_minus_sign"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
@@ -123,7 +124,7 @@
             android:layout_height="24dp"
             android:background="@drawable/bg_button_primary_transparent"
             android:gravity="center"
-            android:text="+"
+            android:text="@string/text_plus_sign"
             android:textColor="@color/black"
             android:textStyle="bold" />
 

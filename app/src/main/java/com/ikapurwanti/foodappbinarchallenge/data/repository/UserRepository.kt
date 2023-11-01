@@ -17,17 +17,17 @@ interface UserRepository {
 
     fun isLoggedIn(): Boolean
 
-    fun getCurrentUser() : UserViewParam?
+    fun getCurrentUser(): UserViewParam?
 
     suspend fun updateProfile(fullName: String? = null, photoUri: Uri? = null): Flow<ResultWrapper<Boolean>>
 
-    suspend fun updatePassword(newPassword: String) : Flow<ResultWrapper<Boolean>>
+    suspend fun updatePassword(newPassword: String): Flow<ResultWrapper<Boolean>>
     suspend fun updateEmail(newEmail: String): Flow<ResultWrapper<Boolean>>
 
-    fun sendChangePasswordRequestByEmail() : Boolean
+    fun sendChangePasswordRequestByEmail(): Boolean
 }
 
-class UserRepositoryImpl(private val firebaseAuthDataSource: FirebaseAuthDataSource): UserRepository {
+class UserRepositoryImpl(private val firebaseAuthDataSource: FirebaseAuthDataSource) : UserRepository {
     override suspend fun doLogin(email: String, password: String): Flow<ResultWrapper<Boolean>> {
         return proceedFlow { firebaseAuthDataSource.doLogin(email, password) }
     }
@@ -60,7 +60,7 @@ class UserRepositoryImpl(private val firebaseAuthDataSource: FirebaseAuthDataSou
     }
 
     override suspend fun updatePassword(newPassword: String): Flow<ResultWrapper<Boolean>> {
-        return proceedFlow { firebaseAuthDataSource.updatePassword(newPassword)}
+        return proceedFlow { firebaseAuthDataSource.updatePassword(newPassword) }
     }
     override suspend fun updateEmail(newEmail: String): Flow<ResultWrapper<Boolean>> {
         return proceedFlow { firebaseAuthDataSource.updateEmail(newEmail) }
@@ -68,5 +68,4 @@ class UserRepositoryImpl(private val firebaseAuthDataSource: FirebaseAuthDataSou
     override fun sendChangePasswordRequestByEmail(): Boolean {
         return firebaseAuthDataSource.sendChangePasswordRequestByEmail()
     }
-
 }

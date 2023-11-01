@@ -42,7 +42,7 @@ object AppModules {
         single { AppDatabase.getInstance(androidContext()) }
         single { get<AppDatabase>().cartDao() }
         single { androidContext().appDataStore }
-        single <PreferenceDataStoreHelper> {PreferenceDataStoreHelperImpl(get()) }
+        single<PreferenceDataStoreHelper> { PreferenceDataStoreHelperImpl(get()) }
     }
 
     private val networkModule = module {
@@ -55,13 +55,13 @@ object AppModules {
         single<CartDataSource> { CartDatabaseDataSource(get()) }
         single<AppPreferenceDataSource> { AppPreferenceDataSourceImpl(get()) }
         single<FirebaseAuthDataSource> { FirebaseAuthDataSourceImpl(get()) }
-        single<RestaurantDataSource> { RestaurantApiDataSource(get())  }
+        single<RestaurantDataSource> { RestaurantApiDataSource(get()) }
     }
 
     private val repositoryModule = module {
-        single<CartRepository> { CartRepositoryImpl(get(), get())  }
-        single<UserRepository> { UserRepositoryImpl(get())  }
-        single<MenuRepository> { MenuRepositoryImpl(get())  }
+        single<CartRepository> { CartRepositoryImpl(get(), get()) }
+        single<UserRepository> { UserRepositoryImpl(get()) }
+        single<MenuRepository> { MenuRepositoryImpl(get()) }
     }
 
     private val viewModelModule = module {
@@ -81,6 +81,11 @@ object AppModules {
     }
 
     val modules: List<Module> = listOf(
-        localModule, networkModule, dataSourceModule, repositoryModule, viewModelModule, utilsModule
+        localModule,
+        networkModule,
+        dataSourceModule,
+        repositoryModule,
+        viewModelModule,
+        utilsModule
     )
 }

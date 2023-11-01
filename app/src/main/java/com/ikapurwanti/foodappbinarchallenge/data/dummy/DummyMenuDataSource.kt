@@ -2,7 +2,6 @@ package com.ikapurwanti.foodappbinarchallenge.data.dummy
 
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
 
-
 interface DummyMenuDataSource {
     fun getMenu(): List<Menu>
 }
@@ -29,10 +28,8 @@ class DummyMenuDataSourceImpl() : DummyMenuDataSource {
                 4.5,
                 "These burger patties are made with ground beef and an easy bread crumb mixture. Nothing beats a simple hamburger on a warm summer evening. Pile these burgers with your favorite condiments and pop open a cool drink!",
                 "Jl. BSD Green Office Park Jl. BSD Grand Boulevard, Sampora, BSD, Kabupaten Tangerang, Banten 15345"
-            ),
+            )
 
         )
     }
-
-
 }

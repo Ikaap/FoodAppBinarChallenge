@@ -12,6 +12,8 @@ fun FirebaseUser?.toUserViewParam(): UserViewParam? = if (this != null) {
     UserViewParam(
         fullName = this.displayName.orEmpty(),
         photoUrl = this.photoUrl.toString(),
-        email = this.email.orEmpty(),
+        email = this.email.orEmpty()
     )
-} else null
+} else {
+    null
+}

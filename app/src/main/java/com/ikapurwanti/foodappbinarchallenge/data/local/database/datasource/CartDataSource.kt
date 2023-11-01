@@ -4,7 +4,6 @@ import com.ikapurwanti.foodappbinarchallenge.data.local.database.dao.CartDao
 import com.ikapurwanti.foodappbinarchallenge.data.local.database.entity.CartEntity
 import kotlinx.coroutines.flow.Flow
 
-
 interface CartDataSource {
 
     fun getAllCarts(): Flow<List<CartEntity>>
@@ -17,8 +16,8 @@ interface CartDataSource {
 }
 
 class CartDatabaseDataSource(
-    private val cartDao : CartDao
-) : CartDataSource{
+    private val cartDao: CartDao
+) : CartDataSource {
     override fun getAllCarts(): Flow<List<CartEntity>> {
         return cartDao.getAllCarts()
     }
@@ -46,5 +45,4 @@ class CartDatabaseDataSource(
     override suspend fun deleteAllCartItems() {
         return cartDao.deleteAllCartItems()
     }
-
 }

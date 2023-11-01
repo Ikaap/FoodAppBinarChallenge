@@ -12,9 +12,6 @@
     <string name="text_total_payment">Total Payment</string>
     <string name="text_order">Order</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-
     <string name="text_location">Location</string>
     <string name="text_address" translatable="false">Jl. BSD Green Office Park Jl. BSD Grand\nBoulevard, Sampora, BSD, Kabupaten Tangerang, Banten 15345</string>
     <string name="text_0" translatable="false">0</string>
@@ -27,7 +24,6 @@
     <string name="text_profile">Profile</string>
     <string name="text_password" translatable="false">Password</string>
     <string name="text_email" translatable="false">Email</string>
-    <string name="text_ikapurwanti144_gmail_com" translatable="false">ikapurwanti144@gmail.com</string>
     <string name="text_phone_number">Phone Number</string>
     <string name="text_089503250312" translatable="false">089503250312</string>
     <string name="text_name">Name</string>
@@ -49,7 +45,6 @@
     <string name="text_order_successful">order successful</string>
 
     <string name="total_qty" translatable="false">x%s</string>
-    <string name="text_menu_list_empty">Menu List Data is Empty</string>
     <string name="text_cart_list_empty">Cart List Data is Empty</string>
 
     <string name="text_start_your_day_with_a_great_taste" translatable="false">Start Your Day with a Great Taste</string>
@@ -79,8 +74,6 @@
     <string name="text_highlight_login_here">Login Here</string>
     <string name="text_highlight_register">Register Here</string>
 
-    <string name="text_format_currency">IDR</string>
-    <string name="All">All</string>
     <string name="text_checkout_error" translatable="false">Checkout Error</string>
     <string name="text_add_cart_success">Add to cart success !</string>
     <string name="text_profile_update_success">Profile updated successfully</string>
@@ -92,5 +85,8 @@
     <string name="text_yes">Yes</string>
     <string name="text_no">No</string>
     <string name="text_register_failed">Register Failed</string>
+    <string name="text_minus_sign" translatable="false">-</string>
+    <string name="text_plus_sign" translatable="false">+</string>
+    <string name="text_checkout" translatable="false">Checkout</string>
 
 </resources>

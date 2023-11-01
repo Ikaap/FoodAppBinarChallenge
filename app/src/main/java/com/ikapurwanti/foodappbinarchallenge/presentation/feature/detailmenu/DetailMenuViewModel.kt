@@ -10,8 +10,7 @@ import com.ikapurwanti.foodappbinarchallenge.model.Menu
 import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
 import kotlinx.coroutines.launch
 
-class DetailMenuViewModel
-    (
+class DetailMenuViewModel(
     private val extras: Bundle?,
     private val cartRepo: CartRepository
 ) : ViewModel() {
@@ -58,7 +57,5 @@ class DetailMenuViewModel
                 }
             }
         }
-
     }
-
 }
