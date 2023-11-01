@@ -46,10 +46,10 @@ android {
     flavorDimensions += "env"
     productFlavors {
         create("production"){
-            buildConfigField("String", "BASE_URL", "\"https://42244d49-bd55-4e06-86d8-71430aa9bf1f.mock.pstmn.io\"")
+            buildConfigField("String", "BASE_URL", "\"https://696853c9-d6f6-480a-939e-2f9923c18544.mock.pstmn.io\"")
         }
         create("integration"){
-            buildConfigField("String", "BASE_URL", "\"https://42244d49-bd55-4e06-86d8-71430aa9bf1f.mock.pstmn.io\"")
+            buildConfigField("String", "BASE_URL", "\"https://696853c9-d6f6-480a-939e-2f9923c18544.mock.pstmn.io\"")
         }
     }
 }
@@ -100,5 +100,8 @@ dependencies {
 
     debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
+
+    // koin
+    implementation ("io.insert-koin:koin-android:3.5.0")
 
 }

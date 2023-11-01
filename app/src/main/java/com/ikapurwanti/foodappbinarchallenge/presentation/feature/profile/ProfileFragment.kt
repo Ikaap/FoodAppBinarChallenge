@@ -5,32 +5,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import com.google.firebase.auth.FirebaseAuth
-import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasource.FirebaseAuthDataSource
-import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasource.FirebaseAuthDataSourceImpl
-import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
-import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepositoryImpl
+import com.ikapurwanti.foodappbinarchallenge.R
 import com.ikapurwanti.foodappbinarchallenge.databinding.FragmentProfileBinding
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.editprofile.EditProfileActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.login.LoginActivity
-import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
-import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
+import com.ikapurwanti.foodappbinarchallenge.utils.AssetWrapper
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
 
-    private val viewModel: ProfileViewModel by viewModels {
-        val firebaseAuth = FirebaseAuth.getInstance()
-        val dataSource: FirebaseAuthDataSource = FirebaseAuthDataSourceImpl(firebaseAuth)
-        val repo: UserRepository = UserRepositoryImpl(dataSource)
-        GenericViewModelFactory.create(ProfileViewModel(repo))
-    }
+    private val viewModel: ProfileViewModel by viewModel()
+
+    private val assetWrapper: AssetWrapper by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,9 +34,25 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        setClickListeners()
         showDataUser()
+        setClickListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getProfileData()
+    }
+
+    private fun getProfileData() {
+        viewModel.getProfileData()
+        observeData()
+    }
+
+    private fun observeData() {
+        viewModel.getProfileResult.observe(viewLifecycleOwner) {
+            showDataUser()
+            viewModel.getProfileData()
+        }
     }
 
     private fun setClickListeners() {
@@ -65,12 +72,12 @@ class ProfileFragment : Fragment() {
     private fun doLogout() {
         AlertDialog.Builder(requireContext())
             .setMessage(
-                "Do you want to logout ?"
+                assetWrapper.getString(R.string.text_logout_dialog)
             )
-            .setPositiveButton("Yes") { _, _ ->
+            .setPositiveButton(assetWrapper.getString(R.string.text_yes)) { _, _ ->
                 viewModel.doLogout()
                 navigateToLogin()
-            }.setNegativeButton("No") { _, _ ->
+            }.setNegativeButton(assetWrapper.getString(R.string.text_no)) { _, _ ->
 
             }.create().show()
     }
@@ -83,8 +90,8 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showDataUser() {
-        binding.tvPersonalName.text = viewModel.getCurrentUser()?.fullName
-        binding.tvPersonalEmail.text = viewModel.getCurrentUser()?.email
+        binding.tvPersonalName.text = viewModel.getCurrentUser()?.fullName.toString()
+        binding.tvPersonalEmail.text = viewModel.getCurrentUser()?.email.toString()
     }
 
 }

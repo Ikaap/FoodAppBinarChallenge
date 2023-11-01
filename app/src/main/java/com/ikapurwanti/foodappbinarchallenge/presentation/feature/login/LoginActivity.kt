@@ -4,22 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.android.material.textfield.TextInputLayout
-import com.google.firebase.auth.FirebaseAuth
 import com.ikapurwanti.foodappbinarchallenge.R
-import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasource.FirebaseAuthDataSource
-import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasource.FirebaseAuthDataSourceImpl
-import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
-import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivityLoginBinding
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.main.MainActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.register.RegisterActivity
-import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
+import com.ikapurwanti.foodappbinarchallenge.utils.AssetWrapper
 import com.ikapurwanti.foodappbinarchallenge.utils.highLightWord
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedWhen
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,12 +23,9 @@ class LoginActivity : AppCompatActivity() {
         ActivityLoginBinding.inflate(layoutInflater)
     }
 
-    private val viewModel: LoginViewModel by viewModels {
-        val firebaseAuth = FirebaseAuth.getInstance()
-        val datasource: FirebaseAuthDataSource = FirebaseAuthDataSourceImpl(firebaseAuth)
-        val repo: UserRepository = UserRepositoryImpl(datasource)
-        GenericViewModelFactory.create(LoginViewModel(repo))
-    }
+    private val viewModel: LoginViewModel by viewModel()
+
+    private val assetWrapper: AssetWrapper by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
             doLogin()
         }
 
-        binding.tvNavToRegister.highLightWord(getString(R.string.text_not_registered_yet_register_here)) {
+        binding.tvRegisterHere.highLightWord(assetWrapper.getString(R.string.text_highlight_register)) {
             navigateToRegister()
         }
     }
@@ -85,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
                     binding.btnLogin.isEnabled = true
                     Toast.makeText(
                         this,
-                        "Login Failed : ${it.exception?.message}",
+                        assetWrapper.getString(R.string.text_login_failed) + it.exception?.message,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -117,11 +110,11 @@ class LoginActivity : AppCompatActivity() {
     private fun checkEmailValidation(email: String): Boolean {
         return if (email.isEmpty()) {
             binding.layoutUserForm.tilEmail.isErrorEnabled = true
-            binding.layoutUserForm.tilEmail.error = getString(R.string.text_error_email_cannot_empy)
+            binding.layoutUserForm.tilEmail.error = assetWrapper.getString(R.string.text_error_email_cannot_empy)
             false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.layoutUserForm.tilEmail.isErrorEnabled = true
-            binding.layoutUserForm.tilEmail.error = getString(R.string.text_error_email_invalid)
+            binding.layoutUserForm.tilEmail.error = assetWrapper.getString(R.string.text_error_email_invalid)
             false
         } else {
             binding.layoutUserForm.tilEmail.isErrorEnabled = false
@@ -132,11 +125,11 @@ class LoginActivity : AppCompatActivity() {
     private fun checkPasswordValidation(password: String, textInputLayout: TextInputLayout): Boolean {
         return if (password.isEmpty()) {
             textInputLayout.isErrorEnabled = true
-            textInputLayout.error = getString(R.string.text_error_password_cannot_empy)
+            textInputLayout.error = assetWrapper.getString(R.string.text_error_password_cannot_empy)
             false
         } else if (password.length < 8) {
             textInputLayout.isErrorEnabled = true
-            textInputLayout.error = getString(R.string.text_error_password_less_than_8_char)
+            textInputLayout.error = assetWrapper.getString(R.string.text_error_password_less_than_8_char)
             false
         } else {
             textInputLayout.isErrorEnabled = false

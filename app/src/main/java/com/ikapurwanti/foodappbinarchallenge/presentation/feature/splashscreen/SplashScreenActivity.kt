@@ -1,22 +1,15 @@
 package com.ikapurwanti.foodappbinarchallenge.presentation.feature.splashscreen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.google.firebase.auth.FirebaseAuth
-import com.ikapurwanti.foodappbinarchallenge.R
-import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasource.FirebaseAuthDataSource
-import com.ikapurwanti.foodappbinarchallenge.data.network.firebase.auth.datasource.FirebaseAuthDataSourceImpl
-import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
-import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepositoryImpl
 import com.ikapurwanti.foodappbinarchallenge.databinding.ActivitySplashScreenBinding
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.login.LoginActivity
 import com.ikapurwanti.foodappbinarchallenge.presentation.feature.main.MainActivity
-import com.ikapurwanti.foodappbinarchallenge.utils.GenericViewModelFactory
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -24,12 +17,7 @@ class SplashScreenActivity : AppCompatActivity() {
         ActivitySplashScreenBinding.inflate(layoutInflater)
     }
 
-    private val viewModel : SplashScreenViewModel by viewModels {
-        val firebaseAuth = FirebaseAuth.getInstance()
-        val dataSource : FirebaseAuthDataSource = FirebaseAuthDataSourceImpl(firebaseAuth)
-        val repo : UserRepository = UserRepositoryImpl(dataSource)
-        GenericViewModelFactory.create(SplashScreenViewModel(repo))
-    }
+    private val viewModel : SplashScreenViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
