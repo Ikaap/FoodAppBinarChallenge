@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private val viewModel : HomeViewModel by viewModel()
+    private val viewModel: HomeViewModel by viewModel()
 
     private val assetWrapper: AssetWrapper by inject()
 
@@ -40,13 +40,14 @@ class HomeFragment : Fragment() {
     }
 
     private val adapterCategories: CategoriesListAdapter by lazy {
-        CategoriesListAdapter{
+        CategoriesListAdapter {
             viewModel.getMenu(it.name)
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
@@ -97,7 +98,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeData() {
-        viewModel.categories.observe(viewLifecycleOwner){
+        viewModel.categories.observe(viewLifecycleOwner) {
             it.proceedWhen(
                 doOnSuccess = {
                     binding.rvCategories.isVisible = true
@@ -135,7 +136,7 @@ class HomeFragment : Fragment() {
             )
         }
 
-        viewModel.menu.observe(viewLifecycleOwner){
+        viewModel.menu.observe(viewLifecycleOwner) {
             val span = if (adapterMenu.adapterLayoutMode == AdapterLayoutMode.LINEAR) 1 else 2
             it.proceedWhen(
                 doOnSuccess = {
@@ -144,7 +145,7 @@ class HomeFragment : Fragment() {
                     binding.layoutStateMenu.pbLoading.isVisible = false
                     binding.layoutStateMenu.tvError.isVisible = false
                     binding.rvMenuList.apply {
-                        layoutManager = GridLayoutManager(requireContext(),span)
+                        layoutManager = GridLayoutManager(requireContext(), span)
                         adapter = adapterMenu
                     }
                     it.payload?.let { data ->
@@ -176,7 +177,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     private fun observeLayout() {
         viewModel.appLayoutGridLiveData.observe(viewLifecycleOwner) { isGridLayout ->
             binding.ivSwitchGrid.isGone = isGridLayout
@@ -186,7 +186,6 @@ class HomeFragment : Fragment() {
             adapterMenu.adapterLayoutMode =
                 if (isGridLayout) AdapterLayoutMode.GRID else AdapterLayoutMode.LINEAR
             adapterMenu.refreshList()
-
         }
     }
 
@@ -198,5 +197,4 @@ class HomeFragment : Fragment() {
             viewModel.setAppLayoutPref(isGridLayout = false)
         }
     }
-
 }

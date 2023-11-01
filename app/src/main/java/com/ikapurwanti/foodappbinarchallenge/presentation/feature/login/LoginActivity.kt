@@ -34,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
         setupFrom()
         setClickListeners()
         observeResult()
-
     }
 
     private fun setupFrom() {
@@ -136,6 +135,4 @@ class LoginActivity : AppCompatActivity() {
             true
         }
     }
-
-
 }

@@ -24,7 +24,7 @@ class CartFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
 
-    private val viewModel : CartViewModel by viewModel()
+    private val viewModel: CartViewModel by viewModel()
 
     private val assetWrapper: AssetWrapper by inject()
 
@@ -45,12 +45,12 @@ class CartFragment : Fragment() {
             override fun onUserDoneEditingNotes(cart: Cart) {
                 viewModel.setCartNotes(cart)
             }
-
         })
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCartBinding.inflate(layoutInflater)
@@ -114,5 +114,4 @@ class CartFragment : Fragment() {
             startActivity(Intent(requireContext(), CheckoutActivity::class.java))
         }
     }
-
 }

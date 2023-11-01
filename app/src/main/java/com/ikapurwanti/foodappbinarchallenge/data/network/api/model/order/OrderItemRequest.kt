@@ -1,6 +1,5 @@
 package com.ikapurwanti.foodappbinarchallenge.data.network.api.model.order
 
-
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
@@ -14,5 +13,5 @@ data class OrderItemRequest(
     @SerializedName("catatan")
     val notes: String?,
     @SerializedName("harga")
-    val price: Int?,
+    val price: Int?
 )

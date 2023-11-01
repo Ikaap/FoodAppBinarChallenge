@@ -43,7 +43,6 @@ class CheckoutActivity : AppCompatActivity() {
     private fun observeData() {
         observeCartData()
         observeCheckoutResult()
-
     }
 
     private fun observeCartData() {
@@ -91,7 +90,7 @@ class CheckoutActivity : AppCompatActivity() {
         }
     }
     private fun observeCheckoutResult() {
-        viewModel.checkoutResult.observe(this){
+        viewModel.checkoutResult.observe(this) {
             it.proceedWhen(
                 doOnSuccess = {
                     binding.layoutState.root.isVisible = false
@@ -134,5 +133,4 @@ class CheckoutActivity : AppCompatActivity() {
             viewModel.order()
         }
     }
-
 }

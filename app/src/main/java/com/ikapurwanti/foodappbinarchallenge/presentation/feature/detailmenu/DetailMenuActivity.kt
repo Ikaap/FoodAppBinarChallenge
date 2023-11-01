@@ -24,7 +24,7 @@ class DetailMenuActivity : AppCompatActivity() {
         ActivityDetailMenuBinding.inflate(layoutInflater)
     }
 
-    private val viewModel: DetailMenuViewModel by viewModel{
+    private val viewModel: DetailMenuViewModel by viewModel {
         parametersOf(intent.extras ?: bundleOf())
     }
 
@@ -39,9 +39,8 @@ class DetailMenuActivity : AppCompatActivity() {
         setClickListener()
     }
 
-
     private fun showDetailMenu(menu: Menu?) {
-        menu?.let { menu ->
+        menu?.let {
             binding.menuImage.load(menu.imageUrl)
             binding.tvMenuName.text = menu.name
             binding.tvMenuPrice.text = menu.price.toCurrencyFormat()

@@ -90,12 +90,13 @@
             android:layout_height="40dp"
             android:background="@drawable/bg_button_rounded_primary"
             android:fontFamily="@font/inter_font"
-            android:text="Checkout"
+            android:text="@string/text_checkout"
             android:textFontWeight="700"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

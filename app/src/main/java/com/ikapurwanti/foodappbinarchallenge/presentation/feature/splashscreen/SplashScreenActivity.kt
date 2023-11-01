@@ -13,11 +13,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashScreenActivity : AppCompatActivity() {
 
-    private val binding : ActivitySplashScreenBinding by lazy {
+    private val binding: ActivitySplashScreenBinding by lazy {
         ActivitySplashScreenBinding.inflate(layoutInflater)
     }
 
-    private val viewModel : SplashScreenViewModel by viewModel()
+    private val viewModel: SplashScreenViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +27,8 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun checkIfUserLogin() {
         lifecycleScope.launch {
-        delay(3000)
-            if (viewModel.isUserLoggedIn()){
+            delay(3000)
+            if (viewModel.isUserLoggedIn()) {
                 navigateToMain()
             } else {
                 navigateToLogin()

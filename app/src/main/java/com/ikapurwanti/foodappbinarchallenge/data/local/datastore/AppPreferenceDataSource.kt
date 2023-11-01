@@ -12,7 +12,7 @@ interface AppPreferenceDataSource {
 
 class AppPreferenceDataSourceImpl(
     private val preferenceHelper: PreferenceDataStoreHelper
-): AppPreferenceDataSource {
+) : AppPreferenceDataSource {
     override suspend fun getAppLayoutPref(): Boolean {
         return preferenceHelper.getFirstPreference(PREF_GRID_LAYOUT, false)
     }
@@ -25,9 +25,7 @@ class AppPreferenceDataSourceImpl(
         return preferenceHelper.putPreference(PREF_GRID_LAYOUT, isGridLayout)
     }
 
-
     companion object {
         val PREF_GRID_LAYOUT = booleanPreferencesKey("PREF_GRID_LAYOUT")
     }
-
 }

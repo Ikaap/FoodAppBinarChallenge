@@ -11,23 +11,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CheckoutViewModel(
-    private val cartRepo : CartRepository
-) : ViewModel(){
+    private val cartRepo: CartRepository
+) : ViewModel() {
     val cartListOrder = cartRepo.getCartData().asLiveData(Dispatchers.IO)
 
     private val _checkoutResult = MutableLiveData<ResultWrapper<Boolean>>()
     val checkoutResult: LiveData<ResultWrapper<Boolean>>
         get() = _checkoutResult
 
-    fun order(){
+    fun order() {
         viewModelScope.launch(Dispatchers.IO) {
             val carts = cartListOrder.value?.payload?.first ?: return@launch
-            cartRepo.order(carts).collect{
+            cartRepo.order(carts).collect {
                 _checkoutResult.postValue(it)
             }
         }
     }
-    fun deleteAllCart(){
+    fun deleteAllCart() {
         viewModelScope.launch {
             cartRepo.deleteAllCart()
         }

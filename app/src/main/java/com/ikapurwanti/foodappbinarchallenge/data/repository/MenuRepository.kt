@@ -28,5 +28,4 @@ class MenuRepositoryImpl(
             apiDataSource.getMenu(category).data?.toMenuList() ?: emptyList()
         }
     }
-
 }

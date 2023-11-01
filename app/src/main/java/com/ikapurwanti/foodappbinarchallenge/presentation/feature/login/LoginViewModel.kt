@@ -8,15 +8,15 @@ import com.ikapurwanti.foodappbinarchallenge.data.repository.UserRepository
 import com.ikapurwanti.foodappbinarchallenge.utils.ResultWrapper
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val userRepo: UserRepository) : ViewModel(){
+class LoginViewModel(private val userRepo: UserRepository) : ViewModel() {
 
     private val _loginResult = MutableLiveData<ResultWrapper<Boolean>>()
     val loginResult: LiveData<ResultWrapper<Boolean>>
         get() = _loginResult
 
-    fun doLogin(email: String, password: String){
+    fun doLogin(email: String, password: String) {
         viewModelScope.launch {
-            userRepo.doLogin(email, password).collect{
+            userRepo.doLogin(email, password).collect {
                 _loginResult.postValue(it)
             }
         }

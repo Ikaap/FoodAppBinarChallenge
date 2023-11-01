@@ -1,6 +1,5 @@
 package com.ikapurwanti.foodappbinarchallenge.data.network.api.model.menu
 
-
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 import com.ikapurwanti.foodappbinarchallenge.model.Menu
@@ -22,7 +21,7 @@ data class MenuItemResponse(
     @SerializedName("detail")
     val desc: String?,
     @SerializedName("alamat_resto")
-    val address: String?,
+    val address: String?
 )
 
 fun MenuItemResponse.toMenu() = Menu(

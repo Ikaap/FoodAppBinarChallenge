@@ -28,17 +28,15 @@ interface FirebaseAuthDataSource {
     fun isLoggedIn(): Boolean
 
     fun getCurrentUser(): FirebaseUser?
-
 }
 
-class FirebaseAuthDataSourceImpl(private val firebaseAuth: FirebaseAuth): FirebaseAuthDataSource{
+class FirebaseAuthDataSourceImpl(private val firebaseAuth: FirebaseAuth) : FirebaseAuthDataSource {
 
     @Throws(exceptionClasses = [Exception::class])
     override suspend fun doLogin(email: String, password: String): Boolean {
-        val loginResult  = firebaseAuth.signInWithEmailAndPassword(email, password).await()
+        val loginResult = firebaseAuth.signInWithEmailAndPassword(email, password).await()
         return loginResult.user != null
     }
-
 
     @Throws(exceptionClasses = [Exception::class])
     override suspend fun doRegister(fullName: String, email: String, password: String): Boolean {
@@ -72,7 +70,7 @@ class FirebaseAuthDataSourceImpl(private val firebaseAuth: FirebaseAuth): Fireba
     }
 
     override fun sendChangePasswordRequestByEmail(): Boolean {
-       getCurrentUser()?.email?.let { firebaseAuth.sendPasswordResetEmail(it) }
+        getCurrentUser()?.email?.let { firebaseAuth.sendPasswordResetEmail(it) }
         return true
     }
 
@@ -86,7 +84,6 @@ class FirebaseAuthDataSourceImpl(private val firebaseAuth: FirebaseAuth): Fireba
     }
 
     override fun getCurrentUser(): FirebaseUser? {
-        return  firebaseAuth.currentUser
+        return firebaseAuth.currentUser
     }
-
 }
