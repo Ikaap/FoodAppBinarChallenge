@@ -14,9 +14,11 @@ import com.ikapurwanti.foodappbinarchallenge.utils.proceed
 import com.ikapurwanti.foodappbinarchallenge.utils.proceedFlow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
+import java.lang.Exception
 
 interface CartRepository {
     fun getCartData(): Flow<ResultWrapper<Pair<List<Cart>, Int>>>
@@ -51,7 +53,10 @@ class CartRepositoryImpl(
                 } else {
                     it
                 }
-            }.onStart {
+            }.catch {
+                emit(ResultWrapper.Error(Exception(it)))
+            }
+            .onStart {
                 emit(ResultWrapper.Loading())
                 delay(2000)
             }

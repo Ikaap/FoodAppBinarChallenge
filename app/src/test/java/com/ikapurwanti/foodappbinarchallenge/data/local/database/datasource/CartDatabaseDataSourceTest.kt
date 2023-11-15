@@ -11,7 +11,6 @@ import io.mockk.mockk
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Test
 
@@ -73,7 +72,7 @@ class CartDatabaseDataSourceTest {
             val mockCartEntity = mockk<CartEntity>()
             coEvery { cartDao.insertCart(any()) } returns 1
             val result = cartDataSource.insertCart(mockCartEntity)
-            coVerify { cartDao.insertCarts(any()) }
+            coVerify { cartDao.insertCart(any()) }
             assertEquals(result, 1)
         }
     }

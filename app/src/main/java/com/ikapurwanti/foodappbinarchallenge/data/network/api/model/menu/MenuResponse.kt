@@ -2,7 +2,6 @@ package com.ikapurwanti.foodappbinarchallenge.data.network.api.model.menu
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
-
 @Keep
 data class MenuResponse(
     @SerializedName("code")
