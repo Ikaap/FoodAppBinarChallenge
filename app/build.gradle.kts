@@ -53,6 +53,10 @@ android {
             buildConfigField("String", "BASE_URL", "\"https://696853c9-d6f6-480a-939e-2f9923c18544.mock.pstmn.io\"")
         }
     }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlintFormat")
@@ -129,4 +133,5 @@ dependencies {
     testImplementation("io.mockk:mockk-agent:1.13.8")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2")
     testImplementation("app.cash.turbine:turbine:1.0.0")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
 }
