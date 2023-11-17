@@ -54,9 +54,9 @@ class CartRepositoryImplTest {
         )
     )
 
-    val mockMenu = mockk<Menu>(relaxed = true)
+    private val mockMenu = mockk<Menu>(relaxed = true)
 
-    val mockCart = Cart(
+    private val mockCart = Cart(
         id = 1,
         menuId = 1,
         menuName = "name menu",
