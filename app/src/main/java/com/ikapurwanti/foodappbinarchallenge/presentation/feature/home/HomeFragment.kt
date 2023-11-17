@@ -93,8 +93,7 @@ class HomeFragment : Fragment() {
 
     private fun getData() {
         binding.tvName.text = viewModel.getCurrentUser()?.fullName
-//        viewModel.getCategories()
-        viewModel.categories
+        viewModel.getCategories()
         viewModel.getMenu()
     }
 
