@@ -13,19 +13,7 @@ interface RestaurantDataSource {
 
     suspend fun createOrder(orderRequest: OrderRequest): OrderResponse
 }
-class RestaurantMockApiDataSource() : RestaurantDataSource {
-    override suspend fun getMenu(category: String?): MenuResponse {
-        TODO("Not yet implemented")
-    }
 
-    override suspend fun getCategories(): CategoriesResponse {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun createOrder(orderRequest: OrderRequest): OrderResponse {
-        TODO("Not yet implemented")
-    }
-}
 class RestaurantApiDataSource(private val service: RestaurantService) : RestaurantDataSource {
     override suspend fun getMenu(category: String?): MenuResponse {
         return service.getMenu(category)
